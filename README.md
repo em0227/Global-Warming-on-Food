@@ -30,6 +30,12 @@ One of the more critial impact of global warming is FOOD SUPPLY! Take a look at 
 
 ### Core Features:
 <br>
+10/8: research on D3.js, three.js to make a interactive map & data visualizations
+<br>
+10/9: create basic structure of the index.html page
+<br>
+10/10: interactive world map to click and show info and data of the country
+<br>
 10/11: interactive world map to click and show info and data of the country
 <br>
 10/12: buttons to switch between different predicted senarios
