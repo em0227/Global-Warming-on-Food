@@ -5,7 +5,7 @@ About
 Functionality & MVPs
 
 Wireframe
-
+![alt text](https://github.com/em0227/Global-Warming-on-Food/blob/main/wireframe.jpg?raw=true)
 
 Technologies & Libraries
 
