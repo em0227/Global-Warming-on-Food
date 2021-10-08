@@ -16,15 +16,16 @@ One of the more critial impact of global warming is FOOD SUPPLY! Take a look at 
 5. HTML
 
 <b>Timeline</b>
+<br>
 Core Features:
-1. interactive world map to click and show info and data of the country
-2. buttons to switch between different predicted senarios
-3. data visualization in line charts/pies/scatter pot (subject to change)
-4. helper visualization of data -- the gif of the crops changing!
+10/11: interactive world map to click and show info and data of the country
+10/12: buttons to switch between different predicted senarios
+10/13: data visualization in line charts/pies/scatter pot (subject to change)
+10:14: helper visualization of data -- the gif of the crops changing!
 
 
 Bonus Features
-1. make the interactive map 3D!
+make the interactive map 3D!
 
 
 <b>Data sources</b>
