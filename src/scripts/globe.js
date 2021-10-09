@@ -1,10 +1,4 @@
 
-// const d3 = require('d3');
-
-
-document.addEventListener("DOMContentLoaded", async function() {
-    const world = await fetch("https://unpkg.com/world-atlas@1.1.4/world/110m.json").then(res => res.json())
-    const result = topojson.feature(world, world.objects.countries);
 
     function Globe(result) {
 
@@ -35,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async function() {
         c.fill();
         c.stroke();
 
-        this.render()
+        
         setInterval(() => {
             this.projection.rotate([this.change(), 0])
             console.log(this.degree)
@@ -66,9 +60,5 @@ document.addEventListener("DOMContentLoaded", async function() {
         return this.degree
     }
 
-    Globe.prototype.render = function (params) {
-        
-    }
 
-    new Globe(result)
-})
+    module.exports = Globe;
