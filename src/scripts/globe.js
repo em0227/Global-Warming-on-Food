@@ -34,7 +34,10 @@
 
         //the gratitcule
         graticule = d3.geoGraticule10()
-        c.beginPath(), path(graticule), c.strokeStyle = "#ccc", c.stroke();
+        c.beginPath();
+        path(graticule);
+        // c.strokeStyle = "#ccc";
+        c.stroke();
 
         
         
@@ -42,7 +45,7 @@
             this.projection.rotate([this.change(), 0])
 
             
-            c.lineWidth = 1.5;
+            c.lineWidth = 0.7;
             c.fillStyle = "aliceblue";
             c.beginPath();
             c.arc(600, 500, radius, 0, 2 * Math.PI);
@@ -58,7 +61,10 @@
             c.stroke();
 
             graticule = d3.geoGraticule10()
-            c.beginPath(), path(graticule), c.strokeStyle = "#ccc", c.stroke();
+            c.beginPath();
+            path(graticule);
+            // c.strokeStyle = "#ccc";
+            c.stroke();
 
             
         }, 500)
