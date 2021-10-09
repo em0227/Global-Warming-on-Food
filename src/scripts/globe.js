@@ -22,18 +22,38 @@ document.addEventListener("DOMContentLoaded", async function() {
         // Draw the seas.
         c.lineWidth = 1.5;
         c.fillStyle = "aliceblue";
-        c.beginPath(), c.arc(s / 2, s / 2, radius, 0, 2 * Math.PI), c.fill(), c.stroke();
+        c.beginPath();
+        c.arc(s / 2, s / 2, radius, 0, 2 * Math.PI);
+        c.fill();
+        c.stroke();
 
         // Draw the land.
         c.lineWidth = 0.35;
         c.fillStyle = "mintcream";
-        c.beginPath(), path(result), c.fill(), c.stroke();
+        c.beginPath(); 
+        path(result);
+        c.fill();
+        c.stroke();
 
         this.render()
         setInterval(() => {
             this.projection.rotate([this.change(), 0])
             console.log(this.degree)
-            return this.canvas
+            c.lineWidth = 1.5;
+            c.fillStyle = "aliceblue";
+            c.beginPath();
+            c.arc(s / 2, s / 2, radius, 0, 2 * Math.PI);
+            c.fill();
+            c.stroke();
+
+            // Draw the land.
+            c.lineWidth = 0.35;
+            c.fillStyle = "mintcream";
+            c.beginPath();
+            path(result);
+            c.fill();
+            c.stroke();
+
         }, 500)
 
     }
