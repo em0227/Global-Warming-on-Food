@@ -1,0 +1,1 @@
+const Globe = require('./globe')
