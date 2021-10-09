@@ -2,10 +2,11 @@
 // const d3 = require('d3');
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", async function() {
+    const world = await fetch("https://unpkg.com/world-atlas@1.1.4/world/110m.json").then(res => res.json())
+    const result = topojson.feature(world, world.objects.countries);
 
-
-    function Globe() {
+    function Globe(result) {
 
         const s = 450
         const radius = 225
@@ -26,8 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Draw the land.
         c.lineWidth = 0.35;
         c.fillStyle = "mintcream";
-        // c.beginPath(), path(world()), c.fill(), c.stroke();
-        world(c, path)
+        c.beginPath(), path(result), c.fill(), c.stroke();
 
         this.render()
         setInterval(() => {
@@ -37,23 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 500)
 
     }
-
-    // const world = FileAttachment("land-50m.json").json()
-    
-    // console.log(world)
-    let world 
-
-    function world(c, path) {
-        fetch("https://unpkg.com/world-atlas@1.1.4/world/110m.json")
-        .then(res => res.json())
-        .then((world) => {
-            console.log(world)
-            const result = topojson.feature(world, world.objects.countries);
-            c.beginPath(), path(result), c.fill(), c.stroke();
-        })
-    }
-
-
+            
     Globe.prototype.change = function() {
         this.degree += 10;
         if (this.degree === 360) {
@@ -66,9 +50,5 @@ document.addEventListener("DOMContentLoaded", function() {
         
     }
 
-
-
-
-    return new Globe()
-
+    new Globe(result)
 })
