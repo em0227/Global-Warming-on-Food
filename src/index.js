@@ -7,6 +7,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const result = topojson.feature(world, world.objects.countries);
     console.log(result)
     const globe = new Globe(result)
-    new GlobeInteraction(globe)
+    // new GlobeInteraction(globe)
 
 })
