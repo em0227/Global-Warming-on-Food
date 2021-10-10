@@ -4,36 +4,49 @@ function Globe(result) {
     const radius = 400;
     const axisDegree = 0
     this.rotationDegree = 0;
-    this.result = result;
     this.projection = d3.geoOrthographic().scale(radius).precision(0.2).translate([600, 500]);
+    const projectionGraticule = d3.geoOrthographic().scale(radius)
 
     const svg = d3.select(".globe")
         .append("svg")
         .attr("class", "globe-map")
         .attr("viewBox", "0 0 1500 1500");
+    
+    const graticule = d3.geoGraticule();
 
+    console.log(graticule)
+
+    const g2 = svg.append("g")
+        .attr("class", "graticule-outline")
+
+    g2.selectAll("path")
+        .data([graticule()])
+        .enter()
+        .append("path")
+        .attr("class", "graticule")
+        .attr("d", d3.geoPath(this.projection));
     
     const g = svg.append("g")
         .attr("class", "countries")
 
     g.selectAll("path")
-        .data(this.result.features)
+        .data(result.features)
         .enter()
         .append("path")
         .attr('class', "country")
         .attr("d", d3.geoPath(this.projection))
 
+    
+
 
     const countries = document.getElementsByClassName("country")
 
     setInterval(() => {
-        const that = this;
-        that.rotate();
+        const globe = this;
+        globe.rotate();
         for (let i = 0; i < countries.length; i++) {
-            // console.log(this.rotationDegree)
             const country = d3.select(countries[i]);
-            country.attr("d", d3.geoPath(that.projection.rotate([that.rotationDegree, axisDegree])))
-
+            country.attr("d", d3.geoPath(globe.projection.rotate([globe.rotationDegree, axisDegree])))
         }
     }, 500);
     

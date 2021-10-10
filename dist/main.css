@@ -7,5 +7,12 @@
 }
 
 .country {
-  fill: blue;
+  fill: #a5f5d3;
+}
+
+.graticule {
+  fill: none;
+  stroke: #777;
+  stroke-width: 0.5px;
+  stroke-opacity: 0.5;
 }

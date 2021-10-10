@@ -1,0 +1,18 @@
+
+
+.countries {
+    stroke: #000000;
+    stroke-width: 0.25px;
+    fill:rgb(57, 158, 241);
+}
+
+.country {
+    fill: rgb(157, 204, 179);
+}
+
+.graticule {
+  fill: none;
+  stroke: rgb(173, 172, 172);
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
