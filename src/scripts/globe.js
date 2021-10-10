@@ -5,7 +5,6 @@ function Globe(result) {
     const axisDegree = 0
     this.rotationDegree = 0;
     this.projection = d3.geoOrthographic().scale(radius).precision(0.2).translate([600, 500]);
-    const projectionGraticule = d3.geoOrthographic().scale(radius)
 
     const svg = d3.select(".globe")
         .append("svg")
@@ -34,7 +33,24 @@ function Globe(result) {
         .enter()
         .append("path")
         .attr('class', "country")
+        .attr("id", d => {
+            return d.properties.name;
+        })
         .attr("d", d3.geoPath(this.projection))
+        .on("mouseover", function() {
+            // console.log(this);
+            d3.select(this)
+                .attr("class", "country-hover");
+            // const name = e.properties.name
+
+            // e.innerHTML = name;
+            
+        })
+        .on("mouseout", function () {
+            d3.select(this)
+                .attr("class", "country");
+        })
+        
 
     
 
