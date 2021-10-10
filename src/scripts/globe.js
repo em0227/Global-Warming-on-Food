@@ -4,19 +4,25 @@
 
         const canvas = document.getElementById("map-canvas");
         const ctx = canvas.getContext('2d');
+
+
+
+
+        
         const radius = 400;
         const axisDegree = 0
         this.rotationDegree = 0;
+        this.result = result;
         this.projection = d3.geoOrthographic().scale(radius).precision(0.2).translate([600, 500]);
-        const path = d3.geoPath(this.projection, ctx);
+        this.path = d3.geoPath(this.projection, ctx);
         
 
-        this.draw(ctx, path, radius, result);
+        this.draw(ctx, this.path, radius, this.result);
         
         setInterval(() => {
-            this.change();
+            this.rotate();
             this.projection.rotate([this.rotationDegree, axisDegree]);
-            this.draw(ctx, path, radius, result);
+            this.draw(ctx, this.path, radius, this.result);
         }, 500)
 
     }
@@ -48,12 +54,17 @@
         
     }
             
-    Globe.prototype.change = function() {
+    Globe.prototype.rotate = function() {
         this.rotationDegree += 10;
         if (this.rotationDegree === 360) this.rotationDegree = 0;
     }
 
-    
+    // Globe.prototype.eventMouseover = function() {
+    //     this.addEventListener("mouseover", e => {
+    //         const name = e.target.__data__.properties.name;
+
+    // })
+    // }
 
 
     module.exports = Globe;
