@@ -31,7 +31,14 @@
 .globe-data {
   display: flex;
   width: 40%;
+  flex-direction: column;
   justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.wheat, .rice, .maize {
+  display: flex;
 }
 
 .globe {
@@ -54,7 +61,7 @@
   border-color: black;
   align-items: center;
   justify-content: flex-start;
-  height: 1000px;
+  height: 1200px;
   width: 100%;
 }
 
