@@ -75,6 +75,9 @@ function Globe(result) {
         .append("path")
         .attr("class", "graticule")
         .attr("d", d3.geoPath(this.projection));
+
+
+    this.rotate();
 }
 
 Globe.prototype.rotate = function() {

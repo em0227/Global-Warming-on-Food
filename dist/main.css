@@ -1,11 +1,6 @@
 /*!************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.css ***!
   \************************************************************************************************************************************/
-.globe {
-  display: flex;
-  position: relative;
-}
-
 .countries {
   stroke: #000000;
   stroke-width: 0.25px;
@@ -20,65 +15,12 @@
   position: relative;
 }
 
-/* .country-hover {
-  fill: yellow
-} */
 .country:hover {
   display: block;
   cursor: pointer;
   fill: yellow;
 }
 
-.country title {
-  visibility: visible;
-  display: block;
-  /* width: 120px; */
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  /* border-radius: 6px; */
-  position: absolute;
-  z-index: 1;
-}
-
-.country:hover title {
-  visibility: visible;
-}
-
-/* .country:hover:before, .country:hover:after {
-  display: block;
-}
-
-.country:before {
-  content: attr(id);
-  display: none;
-  position: absolute;
-  bottom: 65px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 10px;
-  background: black;
-  color: white;
-  white-space: nowrap;
-  font-size: 12px;
-}
-
-.country:after {
-  content: "";
-  display: none;
-  position: absolute;
-  bottom: 65px;
-  left: 50%;
-  margin-left: -10px;
-  width: 0;
-  height: 0;
-  border-top: 10px solid #000;
-  border-bottom: 0 solid #000;
-  border-right: 10px solid transparent;
-  border-left: 10px solid transparent;
-  background: transparent;
-} */
 .graticule {
   fill: none;
   stroke: #adacac;
