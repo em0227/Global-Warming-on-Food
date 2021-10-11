@@ -1,5 +1,6 @@
 const Globe = require('./scripts/globe')
 const GlobeInteraction = require('./scripts/globe_interaction')
+const Data = require("./scripts/data")
 
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -23,4 +24,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         countryBox.style.display = "block";
     })
 
+    const data = new Data()
+
+    
 })
+
+

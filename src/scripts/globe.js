@@ -11,8 +11,8 @@ function Globe(result) {
         .append("svg")
         .attr("class", "globe-map")
         .attr("width", "100%")
-        .attr("height", "70%")
-        .attr("viewBox", "0 0 2000 1000");
+        .attr("height", "100%")
+        .attr("viewBox", "0 0 1000 1000");
     
     const g = svg.append("g")
         .attr("class", "countries")
@@ -31,7 +31,6 @@ function Globe(result) {
         .style("position", "absolute")
         
     const tipMouseover = function (d) {
-        console.log('we are in')
         tooltip
             .style("opacity", 1)
             .html(this.id)

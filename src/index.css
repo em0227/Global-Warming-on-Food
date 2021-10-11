@@ -30,7 +30,14 @@
 }
 
 .globe-data {
-  display: none;
+  display: flex;
+  width: 40%;
+  justify-content:space-around;
+}
+
+.globe {
+  display: flex;
+  width: 60%;
 }
 
 .country-container {
@@ -43,9 +50,13 @@
 }
 
 .globe-container {
-  display: block;
+  display: flex;
   border-style: solid ;
   border-color: black;
+  align-items: center;
+  justify-content: flex-start;
+  height: 1000px;
+  width: 100%;
 }
 
 .h3 {
