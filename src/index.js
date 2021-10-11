@@ -7,18 +7,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     const result = topojson.feature(world, world.objects.countries);
     console.log(result)
     const globe = new Globe(result)
-    globe.rotate();
-    // new GlobeInteraction(globe)
+    // globe.rotate();
 
-    const globeMap = document.querySelector(".countries")
+    // const globeMap = document.querySelector(".countries")
 
-    globeMap.addEventListener("mouseover", e => {
-        clearInterval(globe.setIntervalId);
-    })
+    // globeMap.addEventListener("mouseover", e => {
+    //     clearInterval(globe.setIntervalId);
+    // })
 
-    globeMap.addEventListener("mouseout", e => {
-        globe.rotate();
-    })
+    // globeMap.addEventListener("mouseout", e => {
+    //     globe.rotate();
+    // })
 
     globeMap.addEventListener("click", e => {
         const countryBox = document.querySelector(".country-container");
