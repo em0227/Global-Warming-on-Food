@@ -2,31 +2,25 @@
 function Globe(result) {
 
     const radius = 400;
-    const axisDegree = 0
+    this.axisDegree = 0
     this.rotationDegree = 0;
     this.projection = d3.geoOrthographic().scale(radius).precision(0.2).translate([600, 500]);
+    this.setIntervalId = 0;
 
     const svg = d3.select(".globe")
         .append("svg")
         .attr("class", "globe-map")
-        .attr("viewBox", "0 0 1500 1500");
-    
-    const graticule = d3.geoGraticule();
-
-    console.log(graticule)
-
-    const g2 = svg.append("g")
-        .attr("class", "graticule-outline")
-
-    g2.selectAll("path")
-        .data([graticule()])
-        .enter()
-        .append("path")
-        .attr("class", "graticule")
-        .attr("d", d3.geoPath(this.projection));
+        .attr("width", "100%")
+        .attr("height", "70%")
+        .attr("viewBox", "0 0 2000 1000");
     
     const g = svg.append("g")
-        .attr("class", "countries")
+        .attr("class", "countries");
+
+    // const tip = d3.tip()
+    //     .attr('class', 'country-tip').html(function (d) { return d; });
+
+    // g.call(tip)
 
     g.selectAll("path")
         .data(result.features)
@@ -36,39 +30,52 @@ function Globe(result) {
         .attr("id", d => {
             return d.properties.name;
         })
-        .attr("d", d3.geoPath(this.projection))
-        .on("mouseover", function() {
-            // console.log(this);
-            d3.select(this)
-                .attr("class", "country-hover");
-            // const name = e.properties.name
-
-            // e.innerHTML = name;
-            
-        })
-        .on("mouseout", function () {
-            d3.select(this)
-                .attr("class", "country");
-        })
-        
-
+        .attr("d", d3.geoPath(this.projection));
+        // .on("mouseover", tip.show)
+        // .on("mouseout", function () {
+        //     d3.select(this)
+        //         .attr("class", "country");
+        // })
     
+    d3.select(".country").each(function(d, i) {
+        console.log(this.id)
+        const name = this.id
+        d3.select(this).append("title").text(name)
+        // debugger
+        // d3.select(this.title)
 
+    })
+    
+    const graticule = d3.geoGraticule();
 
-    const countries = document.getElementsByClassName("country")
+    const g2 = svg.append("g")
+        .attr("class", "graticule-outline");
 
-    setInterval(() => {
-        const globe = this;
-        globe.rotate();
+    g2.selectAll("path")
+        .data([graticule()])
+        .enter()
+        .append("path")
+        .attr("class", "graticule")
+        .attr("d", d3.geoPath(this.projection));
+}
+
+Globe.prototype.rotate = function() {
+    const countries = document.getElementsByClassName("country");
+    const globe = this;
+
+    this.setIntervalId = setInterval(() => {      
+        globe.changeRotationAngle();
         for (let i = 0; i < countries.length; i++) {
             const country = d3.select(countries[i]);
-            country.attr("d", d3.geoPath(globe.projection.rotate([globe.rotationDegree, axisDegree])))
+            country.attr("d", d3.geoPath(globe.projection.rotate([globe.rotationDegree, globe.axisDegree])))
         }
-    }, 500);
+    }, 300);
+
+
     
 }
         
-Globe.prototype.rotate = function() {
+Globe.prototype.changeRotationAngle = function() {
     this.rotationDegree += 10;
     if (this.rotationDegree === 360) this.rotationDegree = 0;
 }
