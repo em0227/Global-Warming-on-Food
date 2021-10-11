@@ -19,7 +19,7 @@ function Globe(result) {
         .style("position", "relative");
         
 
-    const Tooltip = d3.select(".globe")
+    const tooltip = d3.select(".globe")
         .append("div")
         .style("opacity", 0)
         .attr("class", "tooltip")
@@ -29,16 +29,26 @@ function Globe(result) {
         .style("border-radius", "5px")
         .style("padding", "5px")
         .style("position", "absolute")
-        // .style("height", "100px")
-        // .style("width", "100px");
         
     const tipMouseover = function (d) {
-        Tooltip
+        console.log('we are in')
+        tooltip
             .style("opacity", 1)
             .html(this.id)
-            .style("left", (d3.mouse(this)[0]+10) + "px")
-            .style("top", (d3.mouse(this)[1]-50) + "px")
-            
+            .style("left", (d3.mouse(this)[0] - 10) + "px")
+            .style("top", (d3.mouse(this)[1] + 10) + "px")
+    }
+
+    const tipMousemove = function (d) {
+        tooltip
+            .html(this.id)
+            .style("left", (d3.mouse(this)[0] - 10) + "px") 
+            .style("top", (d3.mouse(this)[1] - 10) + "px")
+    }
+
+    const tipMouseleave = function (d) {
+        tooltip.style("opacity", 0)
+        
     }
 
     g.selectAll("path")
@@ -50,20 +60,21 @@ function Globe(result) {
             return d.properties.name;
         })
         .attr("d", d3.geoPath(this.projection))
-        .on("mouseover", tipMouseover);
-        
+        .on("mouseover", tipMouseover)
+        .on("mousemove", tipMousemove)
+        .on("mouseleave", tipMouseleave);
     
-    // const graticule = d3.geoGraticule();
+    const graticule = d3.geoGraticule();
 
-    // const g2 = svg.append("g")
-    //     .attr("class", "graticule-outline");
+    const g2 = svg.append("g")
+        .attr("class", "graticule-outline");
 
-    // g2.selectAll("path")
-    //     .data([graticule()])
-    //     .enter()
-    //     .append("path")
-    //     .attr("class", "graticule")
-    //     .attr("d", d3.geoPath(this.projection));
+    g2.selectAll("path")
+        .data([graticule()])
+        .enter()
+        .append("path")
+        .attr("class", "graticule")
+        .attr("d", d3.geoPath(this.projection));
 }
 
 Globe.prototype.rotate = function() {
@@ -79,7 +90,6 @@ Globe.prototype.rotate = function() {
     }, 300);
 
 
-    
 }
         
 Globe.prototype.changeRotationAngle = function() {
