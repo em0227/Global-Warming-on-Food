@@ -1,5 +1,4 @@
 const Globe = require('./scripts/globe')
-const GlobeInteraction = require('./scripts/globe_interaction')
 const Data = require("./scripts/data")
 
 
@@ -24,7 +23,23 @@ document.addEventListener("DOMContentLoaded", async function () {
         countryBox.style.display = "block";
     })
 
-    const data = new Data()
+    const scatterBoxData = new Data();
+
+    const cropBox = document.querySelector(".crop-buttons");
+
+    cropBox.addEventListener("click", e => {
+        switch (e.target.innerHTML) {
+        case "Wheat":
+            scatterBoxData.changeData("WH", "A1F")
+            break;
+        case "Rice":
+            scatterBoxData.changeData("RI", "A1F")
+            break;
+        case "Maize":
+            scatterBoxData.changeData("MZ", "A1F")
+            break;
+        }
+    })
 
     
 })

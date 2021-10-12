@@ -79,3 +79,13 @@
   display: flex;
   justify-content: space-around;
 }
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+i {
+  margin: 3px;
+}
