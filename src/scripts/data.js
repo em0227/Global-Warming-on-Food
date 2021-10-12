@@ -1,90 +1,73 @@
 
 function Data() {
+    this.margin = { top: 10, right: 30, bottom: 35, left: 60 };
+    this.width = 600 - this.margin.left;
+    this.height = 400 - this.margin.top;
 
-const margin = { top: 10, right: 30, bottom: 35, left: 60};
-const width = 600 - margin.left;
-const height = 400 - margin.top;
+    this.svg = d3.select(".display-data")
+        .append("svg")
+        .attr("width", this.width + this.margin.left + this.margin.right)
+        .attr('height', this.height + this.margin.top + this.margin.bottom)
+        .append('g')
+        .attr("transform", `translate(${this.margin.left}, ${this.margin.top})`);
+    
+    this.x = d3.scaleLinear()
+        .domain([0, 167]) //could pass in variable
+        .range([0, this.width]);
+    
+    this.y = d3.scaleLinear()
+        .domain([-25, 20]) //could pass in variable
+        .range([this.height, 0]);
 
-const svg = d3.select(".wheat")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom)
-    .append('g')
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    this.createAxis()
+    this.buildData("WH", "A1F")
+    
 
-
-async function buildData () {
-    let data = await d3.csv("./src/data/crops-yield-changes.csv");
-    createData(data)
 }
 
-buildData()
+Data.prototype.createAxis = function() {
 
-function createData (data) {
+    this.svg.append("g")
+        .attr("transform", `translate(0, ${this.height})`)
+        .call(d3.axisBottom(this.x));
 
-    const x = d3.scaleLinear()
-        .domain([0, 167])
-        .range([0, width]);
-    
-    svg.append("g")
-        .attr("transform", "translate(0, " + height + ')')
-        .call(d3.axisBottom(x));
-    
-    svg.append("text")
+    this.svg.append("text")
         .attr("class", "x-label")
         .attr("text-anchor", "start")
-        .text("Countries Index")
-        .attr("transform", "translate(" + width / 3 + "," + (height + margin.bottom) +")")
+        .text("Countries Index") //could be changed to a variable to apply to other data visualization
+        .attr("transform", `translate(${this.width / 3}, ${this.height + this.margin.bottom})`)
 
-    const y = d3.scaleLinear()
-        .domain([-25, 20])
-        .range([height, 0]);
-    
-    svg.append("g")
-        .call(d3.axisLeft(y));
 
-    svg.append("text")
+    this.svg.append("g")
+        .call(d3.axisLeft(this.y));
+
+    this.svg.append("text")
         .attr("class", "y-label")
         .attr("text-anchor", "end")
-        .text("Yield Change in %")
-        .attr("transform", "translate(-30, " + height/3 + ") rotate(-90)")
+        .text("Yield Change in %") //could be changed to a variable to apply to other data visualization
+        .attr("transform", `translate(-${this.margin.bottom}, ${this.height / 3}) rotate(-90)`)
+}
+
+
+Data.prototype.fillScatterPotCircle = function (data, x, y, circleColor, yColumn) {
     
-    svg.append("g")
+    this.svg.append("g")
         .selectAll("circle")
         .data(data)
         .enter()
         .append("circle")
             .attr("cx", function (d) { return x(d.Country);} )
-            .attr("cy", function (d) { return y(d.WHA1F2020);} )
+            .attr("cy", function (d) { return y(d[yColumn]);} )
             .attr("r", 5)
-            .style("fill", "#69b3a2")
+            .style("fill", circleColor)
             .style("stroke", "white");
-
-    svg.append("g")
-        .selectAll("circle")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("cx", function (d) { return x(d.Country); })
-        .attr("cy", function (d) { return y(d.WHA1F2050); })
-        .attr("r", 5)
-        .style("fill", "scarlet")
-        .style("stroke", "white");
-
-    svg.append("g")
-        .selectAll("circle")
-        .data(data)
-        .enter()
-        .append("circle")
-        .attr("cx", function (d) { return x(d.Country); })
-        .attr("cy", function (d) { return y(d.WHA1F2080); })
-        .attr("r", 5)
-        .style("fill", "red")
-        .style("stroke", "white");
-
-
 }
 
+Data.prototype.buildData = async function (crop, scenario) {
+    let data = await d3.csv("./src/data/crops-yield-changes.csv");
+    this.fillScatterPotCircle(data, this.x, this.y, "#69b3a2", `${crop}${scenario}2020`)
+    this.fillScatterPotCircle(data, this.x, this.y, "blue", `${crop}${scenario}2050`)
+    this.fillScatterPotCircle(data, this.x, this.y, "red", `${crop}${scenario}2080`)
 }
 
 module.exports = Data;
