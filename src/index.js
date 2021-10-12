@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             break;
         }
 
-        scatterBoxData.changeData(cropVal, sliderVal)
-        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`
+        scatterBoxData.changeData(cropVal, sliderVal);
+        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`;
     })
 
     slider.addEventListener("change", e => {
@@ -56,18 +56,18 @@ document.addEventListener("DOMContentLoaded", async function () {
                 sliderVal = "A1F";
                 break;
             case "2":
-                sliderVal = "A2";
+                sliderVal = "A2a";
                 break;
             case "3":
-                sliderVal = "B1";
+                sliderVal = "B1a";
                 break;
             case "4":
-                sliderVal = "B2";
+                sliderVal = "B2a";
                 break;
         }
 
-        scatterBoxData.changeData(cropVal, sliderVal)
-        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`
+        scatterBoxData.changeData(cropVal, sliderVal);
+        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`;
     } )
 
     
