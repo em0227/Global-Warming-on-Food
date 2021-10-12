@@ -1,5 +1,4 @@
 
-
 .countries {
   stroke: #000000;
   stroke-width: 0.25px;
@@ -13,7 +12,6 @@
   fill: rgb(157, 204, 179);
   position: relative;
 }
-
 
 .country:hover {
   display: block;
@@ -35,11 +33,6 @@
   justify-content:space-around;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.wheat, .rice, .maize {
-  display: flex;
-  
 }
 
 .globe {
@@ -72,9 +65,10 @@
   justify-content: space-around;
 }
 
-.scenario-buttons {
+.scenario-slider {
   display: flex;
-  justify-content: space-around;
+  width: 100%;
+  justify-content: center;
 }
 
 .crop-buttons {
@@ -93,5 +87,5 @@ i {
 }
 
 i:hover {
-  
+
 }

@@ -37,10 +37,6 @@
   flex-wrap: wrap;
 }
 
-.wheat, .rice, .maize {
-  display: flex;
-}
-
 .globe {
   display: flex;
   width: 60%;
@@ -70,9 +66,10 @@
   justify-content: space-around;
 }
 
-.scenario-buttons {
+.scenario-slider {
   display: flex;
-  justify-content: space-around;
+  width: 100%;
+  justify-content: center;
 }
 
 .crop-buttons {

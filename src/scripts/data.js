@@ -30,7 +30,7 @@ function Data() {
     this.buildDotInfo("deepskyblue", 55, 2050);
     this.buildDotInfo("mediumvioletred", 110, 2080);
 
-
+    this.renderSlider()
 }
 
 Data.prototype.createDefault = function(x, y) {
@@ -96,7 +96,47 @@ Data.prototype.buildDotInfo = function (circleColor, dis, year) {
         .text(`${year}`)
 }
 
+Data.prototype.renderSlider = function () {
+    const slider = document.querySelector(".scenario-slider");
 
+    const sliderInput = document.createElement("input");
+    sliderInput.setAttribute("name", "scenario-slider");
+    sliderInput.setAttribute("type", "range");
+    sliderInput.setAttribute("min", 1);
+    sliderInput.setAttribute("max", 4);
+    sliderInput.setAttribute("step", 1);
+    sliderInput.setAttribute("value", 1);
+    sliderInput.setAttribute("style", "width: 90%");
+
+    // const sliderOutput = document.createElement("output");
+    // sliderOutput.setAttribute("for", "scenario-slider");
+    // sliderOutput.setAttribute("onforminput", "value = scenario-slider.valueAsNumber");
+
+    let getVal = sliderInput.value;
+    const sliderLabel = document.createElement("label");
+    sliderLabel.setAttribute("id", "display")
+    debugger
+    switch (getVal) {
+        case 1:
+            sliderLabel.innerHTML = "A1F"
+            debugger
+            break;
+        case 2:
+            sliderLabel.innerHTML = "A2"
+            break;
+        case 3:
+            sliderLabel.innerHTML = "B1"
+            break;
+        case 4:
+            sliderLabel.innerHTML = "B2"
+            break;
+    }
+    
+    slider.appendChild(sliderLabel);
+    slider.appendChild(sliderInput);
+    // sliderInput.appendChild(sliderOutput)
+    
+}
 
 Data.prototype.changeScatterPlotCircle = function (data, x, y, circleColor, yColumn) {
     
