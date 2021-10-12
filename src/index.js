@@ -31,12 +31,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         switch (e.target.innerHTML) {
         case "Wheat":
             scatterBoxData.changeData("WH", "A1F")
+            document.querySelector(".display-data-title h3").innerHTML = `Wheat  A1F`
             break;
         case "Rice":
             scatterBoxData.changeData("RI", "A1F")
+            document.querySelector(".display-data-title h3").innerHTML = `Rice  A1F`
             break;
         case "Maize":
             scatterBoxData.changeData("MZ", "A1F")
+            document.querySelector(".display-data-title h3").innerHTML = `Maize  A1F`
             break;
         }
     })

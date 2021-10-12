@@ -25,9 +25,10 @@ function Data() {
         .attr("width", 600)
     
     this.createDefault(this.x, this.y);
-    this.buildDotInfo("#69b3a2", 0, 2020);
-    this.buildDotInfo("#42aaf5", 55, 2050);
-    this.buildDotInfo("#f26689", 110, 2080);
+    document.querySelector(".display-data-title h3").innerHTML = `Wheat  A1F`
+    this.buildDotInfo("limegreen", 0, 2020);
+    this.buildDotInfo("deepskyblue", 55, 2050);
+    this.buildDotInfo("mediumvioletred", 110, 2080);
 
 
 }
@@ -44,7 +45,6 @@ Data.prototype.createDefault = function(x, y) {
         .text("Countries Index") //could be changed to a variable to apply to other data visualization
         .attr("transform", `translate(${this.width / 3}, ${this.height + this.margin.bottom})`)
 
-
     this.svg.append("g")
         .call(d3.axisLeft(y));
 
@@ -54,23 +54,23 @@ Data.prototype.createDefault = function(x, y) {
         .text("Yield Change in %") //could be changed to a variable to apply to other data visualization
         .attr("transform", `translate(-${this.margin.bottom}, ${this.height / 3}) rotate(-90)`)
     
-
     this.buildDefaultData()
 }
 
 Data.prototype.buildDefaultData = async function () {
     let data = await d3.csv("./src/data/crops-yield-changes.csv");
-    this.fillScatterPlotCircle(data, this.x, this.y, "#69b3a2", "WHA1F2020")
-    this.fillScatterPlotCircle(data, this.x, this.y, "#42aaf5", "WHA1F2050")
-    this.fillScatterPlotCircle(data, this.x, this.y, "#f26689", "WHA1F2080")
+    this.fillScatterPlotCircle(data, this.x, this.y, "limegreen", "WHA1F2020")
+    this.fillScatterPlotCircle(data, this.x, this.y, "deepskyblue", "WHA1F2050")
+    this.fillScatterPlotCircle(data, this.x, this.y, "mediumvioletred", "WHA1F2080")
 }
 
 Data.prototype.fillScatterPlotCircle = function (data, x, y, circleColor, yColumn) {
+    
     this.svg.append("g")
+        .attr("class", circleColor)
         .selectAll("circle")
         .data(data)
-        .enter()
-        .append("circle")
+        .join("circle")
         .attr("cx", function (d) { return x(d.Country); })
         .attr("cy", function (d) { return y(d[yColumn]); })
         .attr("r", 5)
@@ -97,20 +97,29 @@ Data.prototype.buildDotInfo = function (circleColor, dis, year) {
 }
 
 
-//these two are not working
+
 Data.prototype.changeScatterPlotCircle = function (data, x, y, circleColor, yColumn) {
     
+    this.svg.select(`.${circleColor}`)
+        .selectAll("circle")
+        .data(data)
+        .join("circle")
+        .attr("cx", function (d) { return x(d.Country); })
+        .attr("cy", function (d) { return y(d[yColumn]); })
+        .attr("r", 5)
+        .style("fill", circleColor)
+        .style("stroke", "white"); 
         
+    //need to select the right circles under the right g element 
     
 }
 
 Data.prototype.changeData = async function (crop, scenario) {
     let data = await d3.csv("./src/data/crops-yield-changes.csv");
-    this.changeScatterPlotCircle(data, this.x, this.y, "#69b3a2", `${crop}${scenario}2020`)
-    this.changeScatterPlotCircle(data, this.x, this.y, "#42aaf5", `${crop}${scenario}2050`)
-    this.changeScatterPlotCircle(data, this.x, this.y, "#f26689", `${crop}${scenario}2080`)
+    this.changeScatterPlotCircle(data, this.x, this.y, "limegreen", `${crop}${scenario}2020`)
+    this.changeScatterPlotCircle(data, this.x, this.y, "deepskyblue", `${crop}${scenario}2050`)
+    this.changeScatterPlotCircle(data, this.x, this.y, "mediumvioletred", `${crop}${scenario}2080`)
 }
-
 
 
 module.exports = Data;
