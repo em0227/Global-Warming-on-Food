@@ -1,9 +1,9 @@
 
 function Data() {
 
-const margin = { top: 10, right: 30, bottom: 30, left: 60};
-const width = 460; - margin.left - margin.right;
-const height = 400 - margin.top - margin.bottom;
+const margin = { top: 10, right: 30, bottom: 35, left: 60};
+const width = 600 - margin.left;
+const height = 400 - margin.top;
 
 const svg = d3.select(".wheat")
     .append("svg")
@@ -12,9 +12,6 @@ const svg = d3.select(".wheat")
     .append('g')
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// console.log(width)
-// console.log(height)
-// let i = 0
 
 async function buildData () {
     let data = await d3.csv("./src/data/crops-yield-changes.csv");
@@ -32,6 +29,12 @@ function createData (data) {
     svg.append("g")
         .attr("transform", "translate(0, " + height + ')')
         .call(d3.axisBottom(x));
+    
+    svg.append("text")
+        .attr("class", "x-label")
+        .attr("text-anchor", "start")
+        .text("Countries Index")
+        .attr("transform", "translate(" + width / 3 + "," + (height + margin.bottom) +")")
 
     const y = d3.scaleLinear()
         .domain([-25, 20])
@@ -39,6 +42,12 @@ function createData (data) {
     
     svg.append("g")
         .call(d3.axisLeft(y));
+
+    svg.append("text")
+        .attr("class", "y-label")
+        .attr("text-anchor", "end")
+        .text("Yield Change in %")
+        .attr("transform", "translate(-30, " + height/3 + ") rotate(-90)")
     
     svg.append("g")
         .selectAll("circle")
