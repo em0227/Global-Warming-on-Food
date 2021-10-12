@@ -69,6 +69,16 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+.scenario-slider ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0;
+  padding: 0;
 }
 
 .crop-buttons {

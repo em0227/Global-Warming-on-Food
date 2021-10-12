@@ -26,23 +26,49 @@ document.addEventListener("DOMContentLoaded", async function () {
     const scatterBoxData = new Data();
 
     const cropBox = document.querySelector(".crop-buttons");
+    let cropVal = "WH";
+
+    const slider = document.querySelector("#scenario-slider-input");
+    let sliderVal = "A1F";
+
 
     cropBox.addEventListener("click", e => {
         switch (e.target.innerHTML) {
         case "Wheat":
-            scatterBoxData.changeData("WH", "A1F")
-            document.querySelector(".display-data-title h3").innerHTML = `Wheat  A1F`
+            cropVal = "WH";
             break;
         case "Rice":
-            scatterBoxData.changeData("RI", "A1F")
-            document.querySelector(".display-data-title h3").innerHTML = `Rice  A1F`
+            cropVal = "RI";
             break;
         case "Maize":
-            scatterBoxData.changeData("MZ", "A1F")
-            document.querySelector(".display-data-title h3").innerHTML = `Maize  A1F`
+            cropVal = "MZ";
             break;
         }
+
+        scatterBoxData.changeData(cropVal, sliderVal)
+        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`
     })
+
+    slider.addEventListener("change", e => {
+    
+        switch (e.target.value) {
+            case "1":
+                sliderVal = "A1F";
+                break;
+            case "2":
+                sliderVal = "A2";
+                break;
+            case "3":
+                sliderVal = "B1";
+                break;
+            case "4":
+                sliderVal = "B2";
+                break;
+        }
+
+        scatterBoxData.changeData(cropVal, sliderVal)
+        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`
+    } )
 
     
 })
