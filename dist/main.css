@@ -1,12 +1,44 @@
 /*!************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.css ***!
   \************************************************************************************************************************************/
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 25px;
+  font-weight: 300;
+  margin: 10px;
+}
+
+h4 {
+  font-weight: 200;
+  margin: 10px;
+}
+
+text {
+  font-weight: 200;
+}
+
 .countries {
   stroke: #000000;
   stroke-width: 0.25px;
-  fill: #399ef1;
+  background-color: #399ef1;
   display: flex;
   position: relative;
+}
+
+button {
+  border-radius: 80%;
+  font-size: 16px;
+  background-color: lemonchiffon;
+  padding: 10px;
 }
 
 .country {
@@ -35,6 +67,7 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  margin: 50px;
 }
 
 .globe {
@@ -47,18 +80,20 @@
   width: 100%;
   height: 50%;
   border-style: solid;
+  border-top: 0px;
   border-color: black;
-  background-color: gray;
+  background-color: #d1f3d1;
 }
 
 .globe-container {
   display: flex;
-  border-style: solid;
-  border-color: black;
+  /* border-style: solid ; */
+  /* border-color: black; */
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   height: 50%;
   width: 100%;
+  background-color: aliceblue;
 }
 
 .display-data {
@@ -71,6 +106,7 @@
   width: 100%;
   justify-content: center;
   flex-wrap: wrap;
+  margin: 20px;
 }
 
 .scenario-slider ul {
@@ -80,19 +116,22 @@
   width: 90%;
   margin: 0;
   padding: 0;
+  font-size: 20px;
 }
 
 .crop-buttons {
   display: flex;
   justify-content: space-around;
+  margin: 20px;
 }
 
 .info {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 }
 
 i {
   margin: 3px;
+  font-size: 16px;
 }
