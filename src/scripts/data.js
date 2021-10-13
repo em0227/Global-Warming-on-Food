@@ -1,13 +1,15 @@
+const RenderObj = require("./render_obj")
 
 function Data() {
-    this.margin = { top: 10, right: 0, bottom: 35, left: 20 };
+    this.margin = { top: 10, right: 0, bottom: 35, left: 60 };
     this.width = 480 - this.margin.left;
     this.height = 300 - this.margin.top;
 
     this.svg = d3.select(".display-scatterplot-data")
         .append("svg")
-        .attr("width", this.width + this.margin.left + this.margin.right)
-        .attr('height', this.height + this.margin.top + this.margin.bottom)
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("viewBox", "0 0 500 400")
         .append('g')
         .attr("transform", `translate(${this.margin.left}, ${this.margin.top})`);
     
@@ -18,20 +20,21 @@ function Data() {
     this.y = d3.scaleLinear()
         .domain([-30, 20]) //could pass in variable
         .range([this.height, 0]);
-
-    this.dotInfoSvg = d3.select(".dot-color-info")
-        .append("svg")
-        .attr("height", 15)
-        .attr("width", 600)
     
     this.createDefault(this.x, this.y);
     document.querySelector(".display-data-title h3").innerHTML = `Wheat  A1F`
-    this.buildDotInfo("limegreen", 0, 2020);
-    this.buildDotInfo("deepskyblue", 55, 2050);
-    this.buildDotInfo("mediumvioletred", 110, 2080);
 
-    this.renderSlider()
-    this.moreInfoToolTip()
+    this.dotInfoSvg = this.svg
+        .append("g")
+        .attr("transform", `translate(0, ${this.height})`)
+        .attr("class", "dot-info");
+
+    this.buildDotInfo("limegreen", 0, 2020);
+    this.buildDotInfo("deepskyblue", 45, 2050);
+    this.buildDotInfo("mediumvioletred", 90, 2080);
+    
+    RenderObj.renderSlider();
+    RenderObj.moreInfoToolTip();
 }
 
 Data.prototype.createDefault = function(x, y) {
@@ -88,30 +91,16 @@ Data.prototype.buildDotInfo = function (circleColor, dis, year) {
         .attr("cx", 5)
         .attr("cy", 5)
         .style("fill", circleColor)
-        .attr("transform", `translate(${320 + dis}, 0)`)
+        .attr("transform", `translate(${300 + dis}, 40)`)
     
     this.dotInfoSvg
         .append("text")
-        .attr("transform", `translate(${335 + dis}, 12)`)
-        .attr("color", "black")
+        .attr("transform", `translate(${315 + dis}, 50)`)
+        .style("font-size", "12")
         .text(`${year}`)
 }
 
-Data.prototype.renderSlider = function () {
-    const slider = document.querySelector(".scenario-slider");
 
-    const sliderInput = document.createElement("input");
-    sliderInput.setAttribute("id", "scenario-slider-input");
-    sliderInput.setAttribute("type", "range");
-    sliderInput.setAttribute("min", 1);
-    sliderInput.setAttribute("max", 4);
-    sliderInput.setAttribute("step", 1);
-    sliderInput.setAttribute("value", 1);
-    sliderInput.setAttribute("style", "width: 90%");
-
-    slider.appendChild(sliderInput);
-    
-}
 
 Data.prototype.changeScatterPlotCircle = function (data, x, y, circleColor, yColumn) {
     
@@ -134,49 +123,6 @@ Data.prototype.changeData = async function (crop, scenario) {
     this.changeScatterPlotCircle(data, this.x, this.y, "limegreen", `${crop}${scenario}2020`)
     this.changeScatterPlotCircle(data, this.x, this.y, "deepskyblue", `${crop}${scenario}2050`)
     this.changeScatterPlotCircle(data, this.x, this.y, "mediumvioletred", `${crop}${scenario}2080`)
-}
-
-Data.prototype.moreInfoToolTip = function () {
-    const infoDiv = document.querySelector(".more-info")
-    const table = document.createElement("table");
-    const firstRow = ["Year", "", "A1FI", "A2", "B1", "B2"];
-    const secondRow = ["1990s", "CO2 levels", "358", "358", "358", "358"];
-    const thirdRow = ["2020s", "CO2 levels", "432", "432", "421", "422" ];
-    const fourthRow = ["2050s", "CO2 levels", "590", "549", "492", "488" ];
-    const fifthRow = ["2080s", "CO2 levels", "810", "709", "527", "561" ];
-    const tr1 = document.createElement("tr");
-    infoDiv.appendChild(table);
-    table.appendChild(tr1);
-
-    for (let i = 0; i < firstRow.length; i++) {
-        let el = firstRow[i];
-        let th = document.createElement("th");
-        th.innerHTML = el;
-        tr1.appendChild(th);
-    }
-
-    function fillRows(arr) {
-        let tr = document.createElement("tr");
-        table.appendChild(tr);
-        for (let i = 0; i < arr.length; i++) {
-            let el = arr[i];
-            let td = document.createElement("td");
-            td.innerHTML = el;
-            tr.appendChild(td);
-        }
-    }
-
-    fillRows(secondRow);
-    fillRows(thirdRow);
-    fillRows(fourthRow);
-    fillRows(fifthRow);
-    
-    const wikiLink= document.createElement("a");
-    wikiLink.setAttribute("href", "https://en.wikipedia.org/wiki/Special_Report_on_Emissions_Scenarios");
-    wikiLink.setAttribute("target", "_blank");
-    wikiLink.style.textDecoration = "underline";
-    wikiLink.innerHTML = "Emissions Scenarios Wiki";
-    infoDiv.appendChild(wikiLink);
 }
 
 

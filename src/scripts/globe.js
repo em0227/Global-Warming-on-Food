@@ -1,23 +1,36 @@
 
-function Globe(result) {
+async function Globe() {
 
     const radius = 400;
     this.axisDegree = 0
     this.rotationDegree = 0;
     this.projection = d3.geoOrthographic().scale(radius).precision(0.2).translate([600, 500]);
     this.setIntervalId = 0;
+    
+    this.result = await this.grabData();
+    this.createGlobe(this.result);
+    this.rotate();
+    this.events();
+}
 
+Globe.prototype.grabData = async function () {
+    const world = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(res => res.json())
+    return topojson.feature(world, world.objects.countries);
+    
+}
+
+Globe.prototype.createGlobe = function (result) {
     const svg = d3.select(".globe")
         .append("svg")
         .attr("class", "globe-map")
         .attr("width", "100%")
         .attr("height", "100%")
         .attr("viewBox", "100 0 1000 1100");
-    
+
     const g = svg.append("g")
         .attr("class", "countries")
         .style("position", "relative");
-        
+
 
     const tooltip = d3.select(".globe")
         .append("div")
@@ -28,26 +41,26 @@ function Globe(result) {
         .style("border-width", "2px")
         .style("border-radius", "5px")
         .style("padding", "5px")
-        .style("position", "absolute")
-        
+        .style("position", "absolute");
+
     const tipMouseover = function (d) {
         tooltip
             .style("opacity", 1)
             .html(this.id)
             .style("left", (d3.mouse(this)[0] - 10) + "px")
-            .style("top", (d3.mouse(this)[1] + 10) + "px")
+            .style("top", (d3.mouse(this)[1] - 10) + "px")
     }
 
     const tipMousemove = function (d) {
         tooltip
             .html(this.id)
-            .style("left", (d3.mouse(this)[0] - 10) + "px") 
+            .style("left", (d3.mouse(this)[0] - 10) + "px")
             .style("top", (d3.mouse(this)[1] - 10) + "px")
     }
 
     const tipMouseleave = function (d) {
         tooltip.style("opacity", 0)
-        
+
     }
 
     g.selectAll("path")
@@ -62,7 +75,7 @@ function Globe(result) {
         .on("mouseover", tipMouseover)
         .on("mousemove", tipMousemove)
         .on("mouseleave", tipMouseleave);
-    
+
     const graticule = d3.geoGraticule();
 
     const g2 = svg.append("g")
@@ -74,10 +87,8 @@ function Globe(result) {
         .append("path")
         .attr("class", "graticule")
         .attr("d", d3.geoPath(this.projection));
-
-
-    this.rotate();
 }
+
 
 Globe.prototype.rotate = function() {
     const countries = document.getElementsByClassName("country");
@@ -91,13 +102,31 @@ Globe.prototype.rotate = function() {
         }
     }, 300);
 
-
 }
         
 Globe.prototype.changeRotationAngle = function() {
     this.rotationDegree += 10;
     if (this.rotationDegree === 360) this.rotationDegree = 0;
 }
+
+Globe.prototype.events = function () {
+    const globeMap = document.querySelector(".countries");
+
+    globeMap.addEventListener("mouseover", e => {
+        console.log(e);
+        clearInterval(this.setIntervalId);
+    })
+
+    globeMap.addEventListener("mouseout", e => {
+        this.rotate();
+    })
+
+    globeMap.addEventListener("click", e => {
+        const countryBox = document.querySelector(".country-container");
+        countryBox.style.display = "block";
+    });
+}
+
 
 
 module.exports = Globe;
