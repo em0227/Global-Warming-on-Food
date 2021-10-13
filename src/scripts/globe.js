@@ -51,14 +51,14 @@ Globe.prototype.createGlobe = function (result) {
             .style("opacity", 1)
             .html(this.id)
             .style("left", (d3.mouse(this)[0] - 10) + "px")
-            .style("top", (d3.mouse(this)[1] - 10) + "px")
+            .style("top", (this.pageY - 35) + "px")
     }
 
     const tipMousemove = function (d) {
         tooltip
             .html(this.id)
             .style("left", (d3.mouse(this)[0] - 10) + "px")
-            .style("top", (d3.mouse(this)[1] - 10) + "px")
+            .style("top", (this.pageY - 35) + "px")
     }
 
     const tipMouseleave = function (d) {
@@ -116,7 +116,6 @@ Globe.prototype.events = function () {
     const globeMap = document.querySelector(".countries");
 
     globeMap.addEventListener("mouseover", e => {
-        console.log(e);
         clearInterval(this.setIntervalId);
     })
 
