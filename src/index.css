@@ -182,15 +182,43 @@ header h3 {
 
 .info {
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
 }
 
 i {
   margin: 3px;
   font-size: 16px;
+  position: relative;
+  display: flex;
+  cursor: pointer;
 }
 
-i:hover {
-
+i .more-info {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 350px;
+  height: 180px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  /* margin-bottom: 10px; */
+  font-size: 18px;
+  background-color: rgb(110, 107, 107);
+  color: white;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
 }
+
+.more-info table, th, td {
+  border: 1px white solid;
+  padding: 2px;
+}
+
+i:hover .more-info {
+  visibility: visible;
+}
+
