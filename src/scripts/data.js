@@ -21,20 +21,26 @@ function Data() {
         .domain([-30, 20]) //could pass in variable
         .range([this.height, 0]);
     
-    this.createDefault(this.x, this.y);
-    document.querySelector(".display-data-title h3").innerHTML = `Wheat  A1F`
 
     this.dotInfoSvg = this.svg
         .append("g")
         .attr("transform", `translate(0, ${this.height})`)
         .attr("class", "dot-info");
 
+}
+
+Data.prototype.draw = async function () {
+    await this.createDefault(this.x, this.y);
+    document.querySelector(".display-data-title h3").innerHTML = `WH  A1F`;
+
     this.buildDotInfo("limegreen", 0, 2020);
     this.buildDotInfo("deepskyblue", 45, 2050);
     this.buildDotInfo("mediumvioletred", 90, 2080);
-    
+
     RenderObj.renderSlider();
     RenderObj.moreInfoToolTip();
+
+    this.events();
 }
 
 Data.prototype.createDefault = function(x, y) {
@@ -101,7 +107,6 @@ Data.prototype.buildDotInfo = function (circleColor, dis, year) {
 }
 
 
-
 Data.prototype.changeScatterPlotCircle = function (data, x, y, circleColor, yColumn) {
     
     this.svg.select(`.${circleColor}`)
@@ -125,5 +130,51 @@ Data.prototype.changeData = async function (crop, scenario) {
     this.changeScatterPlotCircle(data, this.x, this.y, "mediumvioletred", `${crop}${scenario}2080`)
 }
 
+Data.prototype.events = function () {
+    const cropBox = document.querySelector(".crop-buttons");
+    let cropVal = "WH";
+
+    const slider = document.querySelector("#scenario-slider-input");
+    let sliderVal = "A1F";
+
+
+    cropBox.addEventListener("click", e => {
+        switch (e.target.innerHTML) {
+            case "Wheat":
+                cropVal = "WH";
+                break;
+            case "Rice":
+                cropVal = "RI";
+                break;
+            case "Maize":
+                cropVal = "MZ";
+                break;
+        }
+
+        this.changeData(cropVal, sliderVal);
+        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`;
+    })
+
+    slider.addEventListener("change", e => {
+
+        switch (e.target.value) {
+            case "1":
+                sliderVal = "A1F";
+                break;
+            case "2":
+                sliderVal = "A2a";
+                break;
+            case "3":
+                sliderVal = "B1a";
+                break;
+            case "4":
+                sliderVal = "B2a";
+                break;
+        }
+
+        this.changeData(cropVal, sliderVal);
+        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`;
+    })
+}
 
 module.exports = Data;

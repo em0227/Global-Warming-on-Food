@@ -1,5 +1,5 @@
 
-async function Globe() {
+function Globe() {
 
     const radius = 400;
     this.axisDegree = 0
@@ -7,8 +7,11 @@ async function Globe() {
     this.projection = d3.geoOrthographic().scale(radius).precision(0.2).translate([600, 500]);
     this.setIntervalId = 0;
     
-    this.result = await this.grabData();
-    this.createGlobe(this.result);
+}
+
+Globe.prototype.draw = async function () {
+    const result = await this.grabData();
+    this.createGlobe(result);
     this.rotate();
     this.events();
 }
