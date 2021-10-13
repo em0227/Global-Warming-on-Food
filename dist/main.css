@@ -9,17 +9,19 @@ body {
 
 h1 {
   font-size: 50px;
+  padding: 20px;
 }
 
 h3 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 300;
-  margin: 10px;
+  margin: 25px;
 }
 
 h4 {
   font-weight: 200;
-  margin: 10px;
+  margin: 20px;
+  color: #1111b9;
 }
 
 text {
@@ -39,6 +41,24 @@ button {
   font-size: 16px;
   background-color: lemonchiffon;
   padding: 10px;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  /* margin-top: 50px; */
+}
+
+header h3 {
+  margin: 0;
+}
+
+#nav-bar {
+  margin-top: 10px;
+  font-size: 70px;
 }
 
 .country {
@@ -65,9 +85,8 @@ button {
   width: 40%;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
-  margin: 50px;
 }
 
 .globe {
@@ -89,8 +108,9 @@ button {
   display: flex;
   /* border-style: solid ; */
   /* border-color: black; */
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 50%;
   width: 100%;
   background-color: aliceblue;
@@ -101,12 +121,45 @@ button {
   justify-content: space-around;
 }
 
+.display-data-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+.display-data-title h3 {
+  margin-top: 50px;
+  margin-bottom: -10px;
+}
+
 .scenario-slider {
   display: flex;
   width: 100%;
   justify-content: center;
   flex-wrap: wrap;
   margin: 20px;
+}
+
+.scenarios-control {
+  display: block;
+  border-style: solid;
+  border-color: #acaaaa;
+  border-width: 1px;
+  border-bottom-style: dotted;
+  background-color: #e1dddd;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+}
+
+.crops-control {
+  display: block;
+  border-style: solid;
+  border-color: #acaaaa;
+  border-width: 1px;
+  background-color: #dfdbdb;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
 }
 
 .scenario-slider ul {

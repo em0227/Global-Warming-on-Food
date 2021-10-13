@@ -12,7 +12,7 @@ function Globe(result) {
         .attr("class", "globe-map")
         .attr("width", "100%")
         .attr("height", "100%")
-        .attr("viewBox", "0 0 1000 1000");
+        .attr("viewBox", "100 0 1000 1100");
     
     const g = svg.append("g")
         .attr("class", "countries")
