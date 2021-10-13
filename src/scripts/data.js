@@ -1,10 +1,10 @@
 
 function Data() {
-    this.margin = { top: 10, right: 30, bottom: 35, left: 60 };
-    this.width = 600 - this.margin.left;
-    this.height = 400 - this.margin.top;
+    this.margin = { top: 10, right: 0, bottom: 35, left: 20 };
+    this.width = 480 - this.margin.left;
+    this.height = 300 - this.margin.top;
 
-    this.svg = d3.select(".display-data")
+    this.svg = d3.select(".display-scatterplot-data")
         .append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr('height', this.height + this.margin.top + this.margin.bottom)
@@ -16,7 +16,7 @@ function Data() {
         .range([0, this.width]);
     
     this.y = d3.scaleLinear()
-        .domain([-30, 30]) //could pass in variable
+        .domain([-30, 20]) //could pass in variable
         .range([this.height, 0]);
 
     this.dotInfoSvg = d3.select(".dot-color-info")
@@ -88,11 +88,11 @@ Data.prototype.buildDotInfo = function (circleColor, dis, year) {
         .attr("cx", 5)
         .attr("cy", 5)
         .style("fill", circleColor)
-        .attr("transform", `translate(${400 + dis}, 0)`)
+        .attr("transform", `translate(${320 + dis}, 0)`)
     
     this.dotInfoSvg
         .append("text")
-        .attr("transform", `translate(${415 + dis}, 12)`)
+        .attr("transform", `translate(${335 + dis}, 12)`)
         .attr("color", "black")
         .text(`${year}`)
 }

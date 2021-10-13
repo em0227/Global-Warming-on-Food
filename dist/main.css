@@ -5,6 +5,8 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 h1 {
@@ -116,9 +118,14 @@ header h3 {
   background-color: aliceblue;
 }
 
-.display-data {
+.display-data-1 {
+  width: 90%;
+}
+
+.display-scatterplot-data {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 
 .display-data-title {
@@ -131,6 +138,10 @@ header h3 {
 .display-data-title h3 {
   margin-top: 50px;
   margin-bottom: -10px;
+}
+
+.control-panel {
+  width: 90%;
 }
 
 .scenario-slider {
@@ -188,7 +199,6 @@ i {
   font-size: 16px;
   position: relative;
   display: flex;
-  cursor: pointer;
 }
 
 i .more-info {
@@ -200,8 +210,7 @@ i .more-info {
   height: 180px;
   bottom: 100%;
   left: 50%;
-  margin-left: -60px;
-  /* margin-bottom: 10px; */
+  margin-left: -250px;
   font-size: 18px;
   background-color: #6e6b6b;
   color: white;

@@ -2,7 +2,8 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
-
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 h1 {
@@ -115,10 +116,15 @@ header h3 {
   background-color: aliceblue;
 }
 
+.display-data-1 {
+  width: 90%;
+}
 
-.display-data {
+
+.display-scatterplot-data {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 
 .display-data-title {
@@ -131,6 +137,10 @@ header h3 {
 .display-data-title h3 {
   margin-top: 50px;
   margin-bottom: -10px;
+}
+
+.control-panel {
+  width: 90%;
 }
 
 .scenario-slider {
@@ -161,6 +171,7 @@ header h3 {
   background-color: rgb(223, 219, 219);
   border-bottom-left-radius: 10%;
   border-bottom-right-radius: 10%;
+  
 }
 
 
@@ -190,7 +201,6 @@ i {
   font-size: 16px;
   position: relative;
   display: flex;
-  cursor: pointer;
 }
 
 i .more-info {
@@ -202,8 +212,7 @@ i .more-info {
   height: 180px;
   bottom: 100%;
   left: 50%;
-  margin-left: -60px;
-  /* margin-bottom: 10px; */
+  margin-left: -250px;
   font-size: 18px;
   background-color: rgb(110, 107, 107);
   color: white;
