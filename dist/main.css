@@ -65,19 +65,20 @@ header h3 {
 
 .country {
   display: block;
-  fill: #9dccb3;
+  /* fill: rgb(157, 204, 179); */
   position: relative;
 }
 
 .country:hover {
   display: block;
   cursor: pointer;
-  fill: yellow;
+  stroke-width: 5px;
+  stroke: #f61703;
 }
 
 .graticule {
   fill: none;
-  stroke: #adacac;
+  stroke: #f56868;
   stroke-width: 0.5px;
   stroke-opacity: 0.5;
 }
@@ -100,9 +101,6 @@ header h3 {
   display: none;
   width: 100%;
   height: 50%;
-  border-style: solid;
-  border-top: 0px;
-  border-color: black;
   background-color: #d1f3d1;
 }
 

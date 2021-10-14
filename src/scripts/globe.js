@@ -6,23 +6,26 @@ function Globe() {
     this.rotationDegree = 0;
     this.projection = d3.geoOrthographic().scale(radius).precision(0.2).translate([600, 500]);
     this.setIntervalId = 0;
+    this.yieldColors = ["crimson", "orange", "yellow", "white", "skyblue", "blue", "navy", "purple"];
+    this.yieldMarks = [20, 10, 5, 0, -5, -10, -15, -20];
     
 }
 
 Globe.prototype.draw = async function () {
-    const result = await this.grabData();
-    this.createGlobe(result);
+    const map = await this.grabMapData();
+    const cropData = await d3.csv("./src/data/crops-yield-changes.csv");
+    this.createGlobe(map, cropData);
     this.rotate();
     this.events();
 }
 
-Globe.prototype.grabData = async function () {
+Globe.prototype.grabMapData = async function () {
     const world = await fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json").then(res => res.json())
     return topojson.feature(world, world.objects.countries);
     
 }
 
-Globe.prototype.createGlobe = function (result) {
+Globe.prototype.createGlobe = function (map, cropData) {
     const svg = d3.select(".globe")
         .append("svg")
         .attr("class", "globe-map")
@@ -51,7 +54,7 @@ Globe.prototype.createGlobe = function (result) {
             .style("opacity", 1)
             .html(this.id)
             .style("left", (d3.mouse(this)[0] - 10) + "px")
-            .style("top", (this.pageY - 35) + "px")
+            .style("top", (d3.mouse(this)[1] - 10) + "px")
     }
 
     const tipMousemove = function (d) {
@@ -66,13 +69,28 @@ Globe.prototype.createGlobe = function (result) {
 
     }
 
+    const globe = this;
+
     g.selectAll("path")
-        .data(result.features)
+        .data(map.features)
         .enter()
         .append("path")
         .attr('class', "country")
         .attr("id", d => {
             return d.properties.name;
+        })
+        .style("fill", function (d) {
+            for (let i = 0; i < cropData.length; i++) {
+                if (d.properties.name === cropData[i].CountryName) {
+                    let val = cropData[i]['WHA1F2020'];
+                    for (let j = 0; j < globe.yieldMarks.length; j++) {
+                        if (val >= globe.yieldMarks[j]) {
+                            return globe.yieldColors[j]
+                        }
+                    }
+                }
+            }
+            return "gray"
         })
         .attr("d", d3.geoPath(this.projection))
         .on("mouseover", tipMouseover)
@@ -127,8 +145,31 @@ Globe.prototype.events = function () {
         const countryBox = document.querySelector(".country-container");
         countryBox.style.display = "block";
     });
+
 }
 
+Globe.prototype.updateData = function (cropData, crop, scenario, year) {
+    const g = d3.select(".countries");
+    const globe = this;
+
+    g.selectAll(".country")
+        .style("fill", function (d) {
+            for (let i = 0; i < cropData.length; i++) {
+                //could use find
+                if (this.id === cropData[i].CountryName) {
+                    let val = cropData[i][`${crop}${scenario}${year}`];
+                    for (let j = 0; j < globe.yieldMarks.length; j++) {
+                        if (val >= globe.yieldMarks[j]) {
+                            return globe.yieldColors[j];
+                        }
+                    }
+                }
+            }
+            return "gray";
+        });
+}
+
+    
 
 
 module.exports = Globe;

@@ -70,12 +70,13 @@ header h3 {
 .country:hover {
   display: block;
   cursor: pointer;
-  fill: yellow;
+  stroke-width: 5px;
+  stroke: rgb(246, 23, 3)
 }
 
 .graticule {
   fill: none;
-  stroke: rgb(173, 172, 172);
+  stroke: rgb(245, 104, 104);
   stroke-width: .5px;
   stroke-opacity: .5;
 }
