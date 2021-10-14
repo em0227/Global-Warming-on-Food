@@ -31,7 +31,6 @@ text {
 .countries {
   stroke: #000000;
   stroke-width: 0.25px;
-  background-color:rgb(57, 158, 241);
   display: flex;
   position: relative;
 }
@@ -64,7 +63,6 @@ header h3 {
 
 .country {
   display: block;
-  /* fill: rgb(157, 204, 179); */
   position: relative;
 }
 
@@ -105,14 +103,13 @@ header h3 {
 
 .globe-container {
   display: flex;
-  /* border-style: solid ; */
-  /* border-color: black; */
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   height: 50%;
   width: 100%;
-  background-color: aliceblue;
+  background-color:ivory;
+  back
 }
 
 .display-data-1 {
