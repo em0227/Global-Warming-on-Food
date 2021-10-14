@@ -30,13 +30,6 @@ text {
   font-weight: 200;
 }
 
-.countries {
-  stroke: #000000;
-  stroke-width: 0.25px;
-  display: flex;
-  position: relative;
-}
-
 button {
   border-radius: 80%;
   font-size: 16px;
@@ -50,7 +43,6 @@ header {
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
-  /* margin-top: 50px; */
 }
 
 header h3 {
@@ -62,8 +54,10 @@ header h3 {
   font-size: 70px;
 }
 
-.country {
-  display: block;
+.countries {
+  stroke: #000000;
+  stroke-width: 0.25px;
+  display: flex;
   position: relative;
 }
 
@@ -123,15 +117,8 @@ header h3 {
   width: 100%;
 }
 
-.display-data-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-}
-
 .display-data-title h3 {
-  margin-top: 50px;
+  margin-top: 15px;
   margin-bottom: -10px;
   display: flex;
   justify-content: center;
@@ -142,7 +129,7 @@ header h3 {
   width: 90%;
 }
 
-.scenario-slider {
+.scenario-slider, .year-slider {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -152,47 +139,32 @@ header h3 {
   padding-right: 60px;
 }
 
-.year-slider {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-right: 20px;
-  padding-right: 60px;
+.scenarios-control, .year-control, .crops-control {
+  display: block;
+  border-style: solid;
+  border-color: #acaaaa;
+  border-width: 1px;
+  background-color: #e1dddd;
+  box-shadow: 10px 5px 5px lightslategrey;
 }
 
 .scenarios-control {
-  display: block;
-  border-style: solid;
-  border-color: #acaaaa;
-  border-width: 1px;
-  background-color: #e1dddd;
   border-top-left-radius: 10%;
   border-top-right-radius: 10%;
-  box-shadow: 10px 5px 5px lightslategrey;
+}
+
+.scenarios-control h4 {
+  padding-bottom: 5px;
 }
 
 .year-control {
-  display: block;
-  border-left: solid;
-  border-right: solid;
-  border-color: #acaaaa;
-  border-width: 1px;
-  background-color: #e1dddd;
   margin: 0;
   padding-bottom: 20px;
-  box-shadow: 10px 5px 5px lightslategrey;
 }
 
 .crops-control {
-  display: block;
-  border-style: solid;
-  border-color: #acaaaa;
-  border-width: 1px;
-  background-color: #dfdbdb;
   border-bottom-left-radius: 10%;
   border-bottom-right-radius: 10%;
-  box-shadow: 10px 5px 5px lightslategrey;
 }
 
 .scenario-slider ul, .year-slider ul {
@@ -217,11 +189,6 @@ header h3 {
   margin: 20px;
 }
 
-.info {
-  display: flex;
-  align-items: center;
-}
-
 i {
   margin: 3px;
   font-size: 16px;
@@ -233,13 +200,15 @@ i .more-info {
   visibility: hidden;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   width: 350px;
   height: 180px;
   bottom: 100%;
   left: 50%;
   margin-left: -250px;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 200;
   background-color: #6e6b6b;
   color: white;
   text-align: center;
@@ -249,8 +218,28 @@ i .more-info {
   font-family: "Roboto", sans-serif;
 }
 
+.info {
+  width: 90%;
+  color: black;
+  line-height: 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-weight: 300;
+}
+
+.more-info-box {
+  font-size: 14px;
+  font-weight: 200;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
 .more-info table, th, td {
-  border: 1px white solid;
+  border: 0.1px white solid;
   padding: 2px;
 }
 
@@ -259,6 +248,14 @@ i:hover .more-info {
 }
 
 footer {
+  font-size: 14px;
   margin: 20px;
+  line-height: 21px;
+  padding-left: 40px;
+  text-indent: -50px;
+  font-weight: 200;
+}
+
+footer a {
   text-decoration: underline;
 }
