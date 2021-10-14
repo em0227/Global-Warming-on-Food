@@ -1,6 +1,6 @@
 
 const RenderObj = {
-    renderSlider() {
+    renderScenariosSlider() {
         const slider = document.querySelector(".scenario-slider");
 
         const sliderInput = document.createElement("input");
@@ -10,7 +10,23 @@ const RenderObj = {
         sliderInput.setAttribute("max", 4);
         sliderInput.setAttribute("step", 1);
         sliderInput.setAttribute("value", 1);
-        sliderInput.setAttribute("style", "width: 90%");
+        sliderInput.setAttribute("style", "width: 70%");
+
+        slider.appendChild(sliderInput);
+
+    },
+
+    renderYearsSlider() {
+        const slider = document.querySelector(".year-slider");
+
+        const sliderInput = document.createElement("input");
+        sliderInput.setAttribute("id", "year-slider-input");
+        sliderInput.setAttribute("type", "range");
+        sliderInput.setAttribute("min", 1);
+        sliderInput.setAttribute("max", 3);
+        sliderInput.setAttribute("step", 1);
+        sliderInput.setAttribute("value", 1);
+        sliderInput.setAttribute("style", "width: 65%");
 
         slider.appendChild(sliderInput);
 

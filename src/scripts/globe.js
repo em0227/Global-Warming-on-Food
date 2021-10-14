@@ -8,6 +8,25 @@ function Globe() {
     this.setIntervalId = 0;
     this.yieldColors = ["crimson", "orange", "yellow", "white", "skyblue", "blue", "navy", "purple"];
     this.yieldMarks = [20, 10, 5, 0, -5, -10, -15, -20];
+
+    this.svg = d3.select(".globe")
+        .append("svg")
+        .attr("class", "globe-map")
+        .attr("width", "100%")
+        .attr("height", "100%")
+        .attr("viewBox", "100 0 1000 1100");
+
+    this.colorRecG = this.svg
+        .append("g")
+        .attr("class", "color-info")
+        .attr("transform", `translate(0, 950)`);
+    
+    this.colorRecG
+        .append("text")
+        .style('font-size', "20px")
+        .attr("class", "globe-color-info-title")
+        .attr("transform", `translate(500, 0)`)
+        .text("WH A1F 2020")
     
 }
 
@@ -26,14 +45,8 @@ Globe.prototype.grabMapData = async function () {
 }
 
 Globe.prototype.createGlobe = function (map, cropData) {
-    const svg = d3.select(".globe")
-        .append("svg")
-        .attr("class", "globe-map")
-        .attr("width", "100%")
-        .attr("height", "100%")
-        .attr("viewBox", "100 0 1000 1100");
 
-    const g = svg.append("g")
+    const g = this.svg.append("g")
         .attr("class", "countries")
         .style("position", "relative");
 
@@ -99,7 +112,7 @@ Globe.prototype.createGlobe = function (map, cropData) {
 
     const graticule = d3.geoGraticule();
 
-    const g2 = svg.append("g")
+    const g2 = this.svg.append("g")
         .attr("class", "graticule-outline");
 
     g2.selectAll("path")
@@ -108,6 +121,46 @@ Globe.prototype.createGlobe = function (map, cropData) {
         .append("path")
         .attr("class", "graticule")
         .attr("d", d3.geoPath(this.projection));
+    
+
+    let dis = 45
+    this.colorInfo("gray", 10, "No Data")
+    for (let i = 0; i < this.yieldColors.length; i++) {
+        const color = this.yieldColors[i];
+        const num = this.yieldMarks[i];
+        dis += 70;
+        this.colorInfo(color, dis, num);
+    }
+    
+    
+}
+
+Globe.prototype.colorInfo = function (rectColor, dis, num) {
+    
+    colorRect = this.colorRecG
+        .append("rect")
+        .attr("class", `${num}`)
+        .attr("height", 15)
+        .attr("width", 15)
+        .style("fill", rectColor)
+        .style("stroke-width", 1)
+        .style("stroke", 'gray')
+        .attr("transform", `translate(${230 + dis}, 40)`);
+
+    const condition = function (num) {
+        if (num === "No Data") {
+            return `${num}`;
+        } else {
+            return `${num}%`;
+        }
+    }
+    
+    this.colorRecG
+        .append("text")
+        .attr("transform", `translate(${250 + dis}, 55)`)
+        .style("font-size", "16")
+        .text(condition(num));
+
 }
 
 

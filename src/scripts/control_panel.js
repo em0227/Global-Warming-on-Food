@@ -2,10 +2,12 @@ const RenderObj = require("./render_obj");
 const Globe = require("./globe");
 const Data = require("./data");
 
-function ControlEvents() {
-    
+function ControlEvents(globe, globeData) {
+    this.globe = globe;
+    this.globeData = globeData;
 
-    RenderObj.renderSlider();
+    RenderObj.renderScenariosSlider();
+    RenderObj.renderYearsSlider();
     RenderObj.moreInfoToolTip();
 }
 
@@ -16,8 +18,10 @@ ControlEvents.prototype.update = function () {
     let cropVal = "WH";
 
     const scenarioSlider = document.querySelector("#scenario-slider-input");
-    let sliderVal = "A1F";
+    let scenarioSliderVal = "A1F";
 
+    const yearSlider = document.querySelector("#year-slider-input");
+    let yearSliderVal = "2020";
 
     cropBox.addEventListener("click", e => {
         switch (e.target.innerHTML) {
@@ -32,29 +36,49 @@ ControlEvents.prototype.update = function () {
                 break;
         }
 
-        this.changeData(cropVal, sliderVal);
-        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`;
+        this.globeData.changeData(cropVal, scenarioSliderVal);
+        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${scenarioSliderVal}`;
+        document.querySelector(".globe-color-info-title").innerHTML = `${cropVal}  ${scenarioSliderVal}  ${yearSliderVal}`;
     })
 
     scenarioSlider.addEventListener("change", e => {
 
         switch (e.target.value) {
             case "1":
-                sliderVal = "A1F";
+                scenarioSliderVal = "A1F";
                 break;
             case "2":
-                sliderVal = "A2a";
+                scenarioSliderVal = "A2a";
                 break;
             case "3":
-                sliderVal = "B1a";
+                scenarioSliderVal = "B1a";
                 break;
             case "4":
-                sliderVal = "B2a";
+                scenarioSliderVal = "B2a";
                 break;
         }
 
-        this.changeData(cropVal, sliderVal);
-        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${sliderVal}`;
+        this.globeData.changeData(cropVal, scenarioSliderVal);
+        document.querySelector(".display-data-title h3").innerHTML = `${cropVal}   ${scenarioSliderVal}`;
+        document.querySelector(".globe-color-info-title").innerHTML = `${cropVal}  ${scenarioSliderVal}  ${yearSliderVal}`;
+    });
+
+    yearSlider.addEventListener("change", e => {
+
+        switch (e.target.value) {
+            case "1":
+                yearSliderVal = "2020";
+                break;
+            case "2":
+                yearSliderVal = "2050";
+                break;
+            case "3":
+                yearSliderVal = "2080";
+                break;
+        }
+
+        document.querySelector(".globe-color-info-title").innerHTML = `${cropVal}  ${scenarioSliderVal}  ${yearSliderVal}`;
     })
 }
 
+module.exports = ControlEvents;

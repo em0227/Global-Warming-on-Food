@@ -21,7 +21,7 @@ function Data(globe) {
         .range([this.height, 0]);
     
 
-    this.dotInfoSvg = this.svg
+    this.dotInfoG = this.svg
         .append("g")
         .attr("transform", `translate(0, ${this.height})`)
         .attr("class", "dot-info");
@@ -87,7 +87,7 @@ Data.prototype.fillScatterPlotCircle = function (data, x, y, circleColor, yColum
 }
 
 Data.prototype.buildDotInfo = function (circleColor, dis, year) {
-    this.dotInfoSvg
+    this.dotInfoG
         .append("circle")
         .attr("class", `${year}`)
         .attr("r", 5)
@@ -96,7 +96,7 @@ Data.prototype.buildDotInfo = function (circleColor, dis, year) {
         .style("fill", circleColor)
         .attr("transform", `translate(${300 + dis}, 40)`)
     
-    this.dotInfoSvg
+    this.dotInfoG
         .append("text")
         .attr("transform", `translate(${315 + dis}, 50)`)
         .style("font-size", "12")
@@ -126,7 +126,6 @@ Data.prototype.changeData = async function (crop, scenario, year) {
     this.changeScatterPlotCircle(data, this.x, this.y, "deepskyblue", `${crop}${scenario}2050`)
     this.changeScatterPlotCircle(data, this.x, this.y, "mediumvioletred", `${crop}${scenario}2080`)
 
-    globe
 }
 
 
