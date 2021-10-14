@@ -66,15 +66,15 @@ Globe.prototype.createGlobe = function (map, cropData) {
         tooltip
             .style("opacity", 1)
             .html(this.id)
-            .style("left", (d3.mouse(this)[0] - 10) + "px")
-            .style("top", (d3.mouse(this)[1] - 10) + "px")
+            .style("left", (d3.mouse(this)[0] + 10) + "px")
+            .style("top", (d3.mouse(this)[1] + 250) + "px")
     }
 
     const tipMousemove = function (d) {
         tooltip
             .html(this.id)
-            .style("left", (d3.mouse(this)[0] - 10) + "px")
-            .style("top", (this.pageY - 35) + "px")
+            .style("left", (d3.mouse(this)[0] + 10) + "px")
+            .style("top", (d3.mouse(this)[1] + 250) + "px")
     }
 
     const tipMouseleave = function (d) {

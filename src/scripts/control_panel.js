@@ -27,12 +27,21 @@ ControlEvents.prototype.update = function () {
         switch (e.target.innerHTML) {
             case "Wheat":
                 cropVal = "WH";
+                document.querySelectorAll("button").forEach(el => el.style.borderColor = "white");
+                e.target.style.borderColor = "gold";
+                e.target.style.borderWidth = "2px" ;
                 break;
             case "Rice":
                 cropVal = "RI";
+                document.querySelectorAll("button").forEach(el => el.style.borderColor = "white");
+                e.target.style.borderColor = "gold";
+                e.target.style.borderWidth = "2px";
                 break;
             case "Maize":
                 cropVal = "MZ";
+                document.querySelectorAll("button").forEach(el => el.style.borderColor = "white");
+                e.target.style.borderColor = "gold";
+                e.target.style.borderWidth = "2px";
                 break;
         }
 
