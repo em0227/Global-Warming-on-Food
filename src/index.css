@@ -252,6 +252,7 @@ i .more-info {
   padding: 5px 0;
   border-radius: 6px;
   position: absolute;
+  font-family: "Roboto", sans-serif;
 }
 
 .more-info table, th, td {
@@ -263,3 +264,7 @@ i:hover .more-info {
   visibility: visible;
 }
 
+footer {
+  margin: 20px;
+  text-decoration: underline;
+}
