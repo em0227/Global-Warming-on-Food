@@ -93,6 +93,7 @@ header h3 {
 .globe {
   display: flex;
   width: 60%;
+  justify-content: center;
 }
 
 .country-container {

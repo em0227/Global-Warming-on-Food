@@ -4,6 +4,8 @@
 
 One of the more critial impact of global warming is FOOD SUPPLY! Take a look at how the major crops (wheat, rice, maize) will be impact in the next 60 years. Click on the world map to check out countries you're interested in. The country's info will be render at the bottom left, and the forecast data will be rendered in line charts and scatter pot on the right. If those data still don't make sense to you, see the corn gif in the middle demishing!
 
+Live Site [here](https://em0227.github.io/Global-Warming-on-Food/)!
+
 <br>
 
 ## Wireframe
@@ -16,11 +18,10 @@ One of the more critial impact of global warming is FOOD SUPPLY! Take a look at 
 ## Technologies & Libraries
 
 
-1. Javascript
+1. Vanilla Javascript
 2. D3.js
-3. Three.js
-4. CSS
-5. HTML
+3. CSS
+4. HTML
 
 <br>
 

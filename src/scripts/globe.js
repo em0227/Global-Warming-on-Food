@@ -6,7 +6,7 @@ function Globe() {
     this.rotationDegree = 0;
     this.projection = d3.geoOrthographic().scale(radius).precision(0.2).translate([600, 500]);
     this.setIntervalId = 0;
-    this.yieldColors = ["crimson", "orange", "yellow", "white", "skyblue", "blue", "navy", "purple"];
+    this.yieldColors = ["purple", "navy", "royalblue", "skyblue", "white", "yellow", "orange", "crimson"];
     this.yieldMarks = [20, 10, 5, 0, -5, -10, -15, -20];
 
     this.svg = d3.select(".globe")
@@ -66,15 +66,15 @@ Globe.prototype.createGlobe = function (map, cropData) {
         tooltip
             .style("opacity", 1)
             .html(this.id)
-            .style("left", (d3.mouse(this)[0] + 10) + "px")
-            .style("top", (d3.mouse(this)[1] + 250) + "px")
+            .style("left", (this.pageX + 10) + "px")
+            .style("top", (this.pageY - 50) + "px")
     }
 
     const tipMousemove = function (d) {
         tooltip
             .html(this.id)
-            .style("left", (d3.mouse(this)[0] + 10) + "px")
-            .style("top", (d3.mouse(this)[1] + 250) + "px")
+            .style("left", (this.pageX + 10) + "px")
+            .style("top", (this.pageY - 50) + "px")
     }
 
     const tipMouseleave = function (d) {
@@ -88,7 +88,7 @@ Globe.prototype.createGlobe = function (map, cropData) {
         .data(map.features)
         .enter()
         .append("path")
-        .attr('class', "country")
+        .attr('class', "country rotate-false")
         .attr("id", d => {
             return d.properties.name;
         })
@@ -172,7 +172,9 @@ Globe.prototype.rotate = function() {
         globe.changeRotationAngle();
         for (let i = 0; i < countries.length; i++) {
             const country = d3.select(countries[i]);
-            country.attr("d", d3.geoPath(globe.projection.rotate([globe.rotationDegree, globe.axisDegree])))
+            country
+                .attr("class", "country rotate-true")
+                .attr("d", d3.geoPath(globe.projection.rotate([globe.rotationDegree, globe.axisDegree])))
         }
     }, 50);
 
@@ -197,6 +199,20 @@ Globe.prototype.events = function () {
     globeMap.addEventListener("click", e => {
         const countryBox = document.querySelector(".country-container");
         countryBox.style.display = "block";
+
+        const countries = d3.selectAll(".country");
+
+        // console.log(countries);
+        console.log(countries.attr("class"))
+        // console.log(countries[0].dataset.rotateState)
+        
+        if (countries.attr("class") === "country rotate-true") {
+            countries.each((d, i) => d3.select(countries[i]).attr("class", "country rotate-false"));
+            clearInterval(this.setIntervalId);
+        } else {
+            this.rotate();
+        }
+        
     });
 
 }
