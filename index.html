@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Warming on Food Supply</title>
+    <link rel="shortcut icon" type="image/jpg" href="./src/images/earthonfire.ico" />
+    <link rel="stylesheet" href="./src/styles/reset.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,700" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./src/index.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script src="./dist/main.js"></script>
+    
+</head>
+<body>
+    <header>
+        <h1>🔥 Global Warming on Food Supply 🔥</h1>
+        <h3>A Data Visualization by Emily Wu</h3>
+        <nav id="nav-bar">
+            <a target="_blank" href="https://github.com/em0227"><i class="fa fa-github" aria-hidden="true"></i></a>
+            <a target="_blank" href="https://www.linkedin.com/in/emilyawu/"><i class="fa fa-linkedin-square"
+                    aria-hidden="true"></i></a>
+        </nav>
+    </header>
+    
+    <div class="globe-container">
+        
+        <div class="globe">
+           
+        </div>
+
+        <div class='globe-data'>
+            <div class="control-panel">
+                <div class="info"><h3>GCM Climate Change Scenarios Based on Different Increments in C02 
+                        <i class="fa fa-info-circle" aria-hidden="true">
+                            <span class="more-info"></span>
+                        </i>
+                    </h3>
+                </div>
+                
+                <div class="scenarios-control">
+                    <h4>Choose a scenario to see all the differences!</h4>
+                    <div class="scenario-slider">
+                        <ul>
+                            <li>A1F</li>
+                            <li>A2</li>
+                            <li>B1</li>
+                            <li>B2</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="year-control">
+                    <h4>Choose a different year to see the globe change color!</h4>
+                    <div class="year-slider">
+                        <ul>
+                            <li>2020</li>
+                            <li>2050</li>
+                            <li>2080</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="crops-control">
+                    <h4>Choose a different crop!</h3>
+                    <div class="crop-buttons">
+                        <button>Wheat</button>
+                        <button>Rice</button>
+                        <button>Maize</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="display-data-1">
+                <div class="display-data-title">
+                    <h3></h3>
+                </div>
+                <div class="display-scatterplot-data"> </div>
+                <div class="dot-color-info"></div>
+            </div>
+            
+        </div>
+
+    </div>
+    <div class="country-container">
+        <h3>Country Data Coming SOON</h3>
+        <div class="country-map">
+
+        </div>
+
+        <div class="country-gif">
+
+        </div>
+
+        <div class="country-data">
+
+        </div>
+
+    </div>
+    
+    <footer>
+        <a target= "_blank" href="https://sedac.ciesin.columbia.edu/data/set/crop-climate-effects-climate-global-food-production">
+            SEDAC: Data Source: Effects of Climate Change on Global Food Production from SRES Emissions and Socioeconomic Scenarios, v1
+        (1970 – 2080)</a> 
+    </footer>
+    
+</body>
+</html>

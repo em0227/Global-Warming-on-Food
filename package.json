@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "webpack --watch --mode=development",
     "build": "webpack --mode=production"
   },
   "keywords": [],
@@ -29,8 +29,5 @@
   },
   "browserslist": [
     "defaults"
-  ],
-  "engines": {
-    "node": "16.10.0"
-  }
+  ]
 }
