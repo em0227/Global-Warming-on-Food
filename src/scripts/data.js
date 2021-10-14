@@ -82,7 +82,8 @@ Data.prototype.fillScatterPlotCircle = function (data, x, y, circleColor, yColum
         .attr("cy", function (d) { return y(d[yColumn]); })
         .attr("r", 5)
         .style("fill", circleColor)
-        .style("stroke", "white");
+        .style("stroke", "white")
+        .style('fill-opacity', "0.8");
     
 }
 
@@ -110,11 +111,14 @@ Data.prototype.changeScatterPlotCircle = function (data, x, y, circleColor, yCol
         .selectAll("circle")
         .data(data)
         .join("circle")
+        .transition()
+        .duration(1000)
         .attr("cx", function (d) { return x(d.Country); })
         .attr("cy", function (d) { return y(d[yColumn]); })
         .attr("r", 5)
         .style("fill", circleColor)
-        .style("stroke", "white"); 
+        .style("stroke", "white")
+        .style('fill-opacity', "0.8");
         
     //need to select the right circles under the right g element 
     

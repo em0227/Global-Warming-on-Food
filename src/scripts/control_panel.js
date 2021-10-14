@@ -37,6 +37,7 @@ ControlEvents.prototype.update = function () {
         }
 
         this.globeData.changeData(cropVal, scenarioSliderVal);
+        this.globe.updateData(cropVal, scenarioSliderVal, yearSliderVal);
         document.querySelector(".display-data-title h3").innerHTML = `${cropVal}  ${scenarioSliderVal}`;
         document.querySelector(".globe-color-info-title").innerHTML = `${cropVal}  ${scenarioSliderVal}  ${yearSliderVal}`;
     })
@@ -59,6 +60,7 @@ ControlEvents.prototype.update = function () {
         }
 
         this.globeData.changeData(cropVal, scenarioSliderVal);
+        this.globe.updateData(cropVal, scenarioSliderVal, yearSliderVal);
         document.querySelector(".display-data-title h3").innerHTML = `${cropVal}   ${scenarioSliderVal}`;
         document.querySelector(".globe-color-info-title").innerHTML = `${cropVal}  ${scenarioSliderVal}  ${yearSliderVal}`;
     });
@@ -77,6 +79,7 @@ ControlEvents.prototype.update = function () {
                 break;
         }
 
+        this.globe.updateData(cropVal, scenarioSliderVal, yearSliderVal);
         document.querySelector(".globe-color-info-title").innerHTML = `${cropVal}  ${scenarioSliderVal}  ${yearSliderVal}`;
     })
 }

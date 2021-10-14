@@ -174,12 +174,12 @@ Globe.prototype.rotate = function() {
             const country = d3.select(countries[i]);
             country.attr("d", d3.geoPath(globe.projection.rotate([globe.rotationDegree, globe.axisDegree])))
         }
-    }, 300);
+    }, 50);
 
 }
         
 Globe.prototype.changeRotationAngle = function() {
-    this.rotationDegree += 10;
+    this.rotationDegree += 1;
     if (this.rotationDegree === 360) this.rotationDegree = 0;
 }
 
@@ -201,9 +201,10 @@ Globe.prototype.events = function () {
 
 }
 
-Globe.prototype.updateData = function (cropData, crop, scenario, year) {
+Globe.prototype.updateData = async function (crop, scenario, year) {
     const g = d3.select(".countries");
     const globe = this;
+    const cropData = await d3.csv("./src/data/crops-yield-changes.csv");
 
     g.selectAll(".country")
         .style("fill", function (d) {
