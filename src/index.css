@@ -259,3 +259,33 @@ footer a {
   text-decoration: underline;
 }
 
+@media only screen and (max-width: 500px) {
+  h1 {
+    font-size: 25px;
+  }
+
+  .globe-container {
+    flex-direction: column;
+  }
+
+  .globe {
+    width: 100%;
+  }
+
+  .globe-data {
+      font-size: 12px;
+      width: 100%;
+  }
+
+  .scenario-slider ul li, .year-slider ul li {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 12px;
+  }
+
+  footer {
+    font-size: 10px;
+  }
+}

@@ -6,8 +6,8 @@ function Globe() {
     this.rotationDegree = 0;
     this.projection = d3.geoOrthographic().scale(radius).precision(0.2).translate([600, 500]);
     this.setIntervalId = 0;
-    this.yieldColors = ["purple", "navy", "royalblue", "skyblue", "white", "yellow", "orange", "crimson"];
-    this.yieldMarks = [20, 10, 5, 0, -5, -10, -15, -20];
+    this.yieldColors = ["purple", "navy", "royalblue", "skyblue", "white", "yellow", "orange", "orangered", "crimson"];
+    this.yieldMarks = [20, 15, 10, 5, 0, -5, -10, -15, -20];
 
     this.svg = d3.select(".globe")
         .append("svg")
@@ -203,15 +203,15 @@ Globe.prototype.events = function () {
         const countries = d3.selectAll(".country");
 
         // console.log(countries);
-        console.log(countries.attr("class"))
+        // console.log(countries.attr("class"))
         // console.log(countries[0].dataset.rotateState)
         
-        if (countries.attr("class") === "country rotate-true") {
-            countries.each((d, i) => d3.select(countries[i]).attr("class", "country rotate-false"));
-            clearInterval(this.setIntervalId);
-        } else {
-            this.rotate();
-        }
+        // if (countries.attr("class") === "country rotate-true") {
+        //     countries.each((d, i) => d3.select(countries[i]).attr("class", "country rotate-false"));
+        //     clearInterval(this.setIntervalId);
+        // } else {
+        //     this.rotate();
+        // }
         
     });
 
@@ -220,13 +220,15 @@ Globe.prototype.events = function () {
 Globe.prototype.updateData = async function (crop, scenario, year) {
     const g = d3.select(".countries");
     const globe = this;
-    const cropData = await d3.csv("./src/data/crops-yield-changes.csv");
-
+    let cropData = await d3.csv("./src/data/crops-yield-changes.csv");
+    // console.log(cropData)
+    // console.log("in the update")
     g.selectAll(".country")
         .style("fill", function (d) {
-            for (let i = 0; i < cropData.length; i++) {
+            let i = 0;
+            for (i; i < cropData.length; i++) {
                 //could use find
-                if (this.id === cropData[i].CountryName) {
+                if (this.id === cropData[i]["CountryName"]) {
                     let val = cropData[i][`${crop}${scenario}${year}`];
                     for (let j = 0; j < globe.yieldMarks.length; j++) {
                         if (val >= globe.yieldMarks[j]) {
@@ -235,6 +237,10 @@ Globe.prototype.updateData = async function (crop, scenario, year) {
                     }
                 }
             }
+            // console.log(this.id)
+            // console.log(i)
+            // console.log(cropData[i-1]["CountryName"])
+            // console.log(cropData[i]["CountryName"])
             return "gray";
         });
 }

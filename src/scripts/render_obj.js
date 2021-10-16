@@ -35,7 +35,7 @@ const RenderObj = {
     moreInfoToolTip() {
     const infoDiv = document.querySelector(".more-info")
     const table = document.createElement("table");
-    const firstRow = ["Year", "", "A1FI", "A2", "B1", "B2"];
+        const firstRow = ["Year", "(ppmv)", "A1FI", "A2", "B1", "B2"];
     const secondRow = ["1990s", "CO2 levels", "358", "358", "358", "358"];
     const thirdRow = ["2020s", "CO2 levels", "432", "432", "421", "422"];
     const fourthRow = ["2050s", "CO2 levels", "590", "549", "492", "488"];
