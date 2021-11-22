@@ -273,15 +273,11 @@ footer a {
   }
 
   .globe-data {
-      font-size: 12px;
-      width: 100%;
-  }
-
-  .scenario-slider ul li, .year-slider ul li {
     font-size: 12px;
+    width: 100%;
   }
 
-  button {
+  .scenario-slider ul li, .year-slider ul li, button {
     font-size: 12px;
   }
 
