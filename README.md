@@ -4,13 +4,11 @@
 
 ### Ever wonder how global warming is affecting food supply around the world?
 
-Food supply is one of the more critical impacts of global warming. As the world becomes warmer, some countries may end up producing more food, while others' yield rate will decrease. Take a look at how the major crops (wheat, rice, maize) yield rate will be affected in the next 60 years and find out your own answers to the question.
+Food supply is one of the more critical impacts of global warming. As the world becomes warmer, some countries may end up producing more food, while others' yield rate will decrease.
 
-Live Site [here](https://em0227.github.io/Global-Warming-on-Food/)
+Take a look at how the major crops (wheat, rice, maize) yield rate will be affected in the next 60 years on [my data visualization site](https://em0227.github.io/Global-Warming-on-Food/) and find out your own answers to the question.
 
-![alt text](https://github.com/em0227/Global-Warming-on-Food/blob/main/src/images/global-warming-food-demo.gif?raw=true)
-
-<br>
+![alt demo-gif](https://github.com/em0227/Global-Warming-on-Food/blob/main/src/images/global-warming-food-demo.gif?raw=true)
 
 ## Technologies & Libraries
 
