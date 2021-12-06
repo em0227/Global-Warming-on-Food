@@ -8,7 +8,7 @@ Food supply is one of the more critical impacts of global warming. As the world 
 
 Live Site [here](https://em0227.github.io/Global-Warming-on-Food/)
 
-![alt text](https://github.com/em0227/Global-Warming-on-Food/blob/main/global-warming-food-demo.gif?raw=true)
+![alt text](https://github.com/em0227/Global-Warming-on-Food/blob/main/src/images/global-warming-food-demo.gif?raw=true)
 
 <br>
 
