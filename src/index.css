@@ -9,6 +9,12 @@ body {
 h1 {
   font-size: 50px;
   padding: 20px;
+  color: #ed721a;
+}
+
+h2 {
+  font-size: 30px;
+  color: #ed721a;
 }
 
 h3 {
@@ -16,7 +22,6 @@ h3 {
   font-weight: 300;
   margin: 25px;
 }
-
 
 h4 {
   font-weight: 200;
@@ -34,7 +39,6 @@ button {
   background-color: lemonchiffon;
   padding: 10px;
 }
-
 
 header {
   display: flex;
@@ -64,21 +68,21 @@ header h3 {
   display: block;
   cursor: pointer;
   stroke-width: 5px;
-  stroke: rgb(246, 23, 3)
+  stroke: rgb(246, 23, 3);
 }
 
 .graticule {
   fill: none;
   stroke: rgb(245, 104, 104);
-  stroke-width: .5px;
-  stroke-opacity: .5;
+  stroke-width: 0.5px;
+  stroke-opacity: 0.5;
 }
 
 .globe-data {
   display: flex;
   width: 40%;
   flex-direction: column;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: flex-start;
   flex-wrap: wrap;
 }
@@ -103,7 +107,7 @@ header h3 {
   justify-content: space-evenly;
   height: 50%;
   width: 100%;
-  background-color:ivory;
+  background-color: ivory;
 }
 
 .display-data-1 {
@@ -128,7 +132,8 @@ header h3 {
   width: 90%;
 }
 
-.scenario-slider, .year-slider {
+.scenario-slider,
+.year-slider {
   display: flex;
   width: 100%;
   justify-content: center;
@@ -138,9 +143,11 @@ header h3 {
   padding-right: 60px;
 }
 
-.scenarios-control, .year-control, .crops-control {
+.scenarios-control,
+.year-control,
+.crops-control {
   display: block;
-  border-style: solid ;
+  border-style: solid;
   border-color: rgb(172, 170, 170);
   border-width: 1px;
   background-color: rgb(225, 221, 221);
@@ -148,8 +155,8 @@ header h3 {
 }
 
 .scenarios-control {
-  border-top-left-radius: 10%;
-  border-top-right-radius: 10%;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
 }
 
 .scenarios-control h4 {
@@ -162,11 +169,12 @@ header h3 {
 }
 
 .crops-control {
-  border-bottom-left-radius: 10%;
-  border-bottom-right-radius: 10%; 
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
 }
 
-.scenario-slider ul, .year-slider ul {
+.scenario-slider ul,
+.year-slider ul {
   list-style: none;
   display: flex;
   justify-content: space-around;
@@ -177,7 +185,8 @@ header h3 {
   position: relative;
 }
 
-.scenario-slider ul input, .year-slider ul input {
+.scenario-slider ul input,
+.year-slider ul input {
   position: absolute;
   right: 20px;
 }
@@ -212,7 +221,7 @@ i .more-info {
   color: white;
   text-align: center;
   padding: 5px 0;
-  border-radius: 6px;
+  border-radius: 0.3rem;
   position: absolute;
   font-family: "Roboto", sans-serif;
 }
@@ -237,8 +246,10 @@ i .more-info {
   padding-bottom: 20px;
 }
 
-.more-info table, th, td {
-  border: .1px white solid;
+.more-info table,
+th,
+td {
+  border: 0.1px white solid;
   padding: 2px;
 }
 
@@ -277,11 +288,67 @@ footer a {
     width: 100%;
   }
 
-  .scenario-slider ul li, .year-slider ul li, button {
+  .scenario-slider ul li,
+  .year-slider ul li,
+  button {
     font-size: 12px;
   }
 
   footer {
     font-size: 10px;
   }
+}
+
+.modal {
+  display: none;
+}
+
+.modal.is-open {
+  display: block;
+}
+
+.modal-screen {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.modal-form {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -220px;
+  width: 360px;
+  padding: 40px;
+  background: #fff;
+  z-index: 3;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 36px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #f00;
+}
+
+.modal-form > h1 {
+  font-size: 36px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.modal-form > p {
+  margin: 0 0 20px 0;
 }
