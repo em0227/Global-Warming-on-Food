@@ -2,21 +2,17 @@
 
 ## About
 
-One of the more critial impact of global warming is FOOD SUPPLY! Take a look at how the major crops (wheat, rice, maize) will be impact in the next 60 years. Click on the world map to check out countries you're interested in. The country's info will be render at the bottom left, and the forecast data will be rendered in line charts and scatter pot on the right. If those data still don't make sense to you, see the corn gif in the middle demishing!
+### Ever wonder how global warming is affecting food supply around the world?
 
-Live Site [here](https://em0227.github.io/Global-Warming-on-Food/)!
+Food supply is one of the more critial impacts of global warming. As the world become warmer, some countries may end up producing more food, while other's yield rate will decrease. Take a look at how the major crops (wheat, rice, maize) yield rate will be affected in the next 60 years and find out your own answers of the question.
 
-<br>
+Live Site [here](https://em0227.github.io/Global-Warming-on-Food/)
 
-## Wireframe
-<br>
-
-![alt text](https://github.com/em0227/Global-Warming-on-Food/blob/main/wireframe.jpg?raw=true)
+![alt text](https://github.com/em0227/Global-Warming-on-Food/blob/main/global-warming-food-demo.gif?raw=true)
 
 <br>
 
 ## Technologies & Libraries
-
 
 1. Vanilla Javascript
 2. D3.js
@@ -25,33 +21,23 @@ Live Site [here](https://em0227.github.io/Global-Warming-on-Food/)!
 
 <br>
 
-## Timeline
+## Core Features:
 
+- <b>A Self-turning Interactive Globe!</b>
 
+  user can hover over the globe and it will stop turning. User can then choose a specific country. In the near future, another feature will be user can click on a specific country and see the country's crop yield changes over the years.
 
-### Core Features:
-<br>
-10/8: research on D3.js, three.js to make a interactive map & data visualizations
-<br>
-10/9: create basic structure of the index.html page
-<br>
-10/10: interactive world map to click and show info and data of the country
-<br>
-10/11: interactive world map to click and show info and data of the country
-<br>
-10/12: buttons to switch between different predicted senarios
-<br>
-10/13: data visualization in line charts/pies/scatter pot (subject to change)
-<br>
-10:14: helper visualization of data -- the gif of the crops changing!
+- <b>Data on the Global Crop Yield Changes</b>
+
+  Based on the CO2 scenario, year, and crop user chooses, the scatter plot will render different results, and user can observe the changes.
+
+- <b>Responsive Design for Mobile Users</b>
+
+  the website is optimized for mobile user as well!
 
 <br>
-<br>
-
-### Bonus Features:
-
-make the interactive map 3D!
-
 
 ## Data sources
+
+hi
 https://sedac.ciesin.columbia.edu/data/set/crop-climate-effects-climate-global-food-production/data-download

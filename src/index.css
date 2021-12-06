@@ -352,3 +352,8 @@ footer a {
 .modal-form > p {
   margin: 0 0 20px 0;
 }
+
+.info-modal-open {
+  color: #ed721a;
+  font-size: 20px;
+}
